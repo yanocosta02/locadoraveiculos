@@ -4,6 +4,8 @@
  */
 package locadoraveiculos;
 
+import Apresentacao.TelaInicial;
+
 /**
  *
  * @author Yan
@@ -25,7 +27,9 @@ public class Funcionario {
     }
     
     public void acessarConta() {
-        //??
+        TelaInicial telaInicial = new TelaInicial(); // Instancia a tela inicial
+        telaInicial.setVisible(true); // Mostra a tela inicial
+        
     }
 
     public boolean verificarCredenciais(String usuarioDigitado, String senhaDigitada) {
@@ -56,7 +60,4 @@ public class Funcionario {
         this.senha = senha;
     }
 
-    public boolean buscaFuncionario(String usuario) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-    }
 }

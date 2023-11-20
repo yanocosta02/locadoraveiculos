@@ -14,6 +14,17 @@ public class Veiculo {
     String marca;
     Double valorDia;
 
+    public Veiculo(String modelo, String cor, String marca, Double valorDia) {
+        this.modelo = modelo;
+        this.cor = cor;
+        this.marca = marca;
+        this.valorDia = valorDia;
+    }
+
+    public Veiculo(){
+        
+    }
+    
     public String getModelo() {
         return modelo;
     }

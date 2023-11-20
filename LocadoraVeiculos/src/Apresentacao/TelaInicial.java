@@ -4,6 +4,10 @@
  */
 package Apresentacao;
 
+import java.awt.CardLayout;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author Yan
@@ -15,6 +19,7 @@ public class TelaInicial extends javax.swing.JFrame {
      */
     public TelaInicial() {
         initComponents();
+        
     }
 
     /**
@@ -26,17 +31,105 @@ public class TelaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMareafunc = new javax.swing.JMenu();
+        jMcadfunc = new javax.swing.JMenuItem();
+        jMlistarfunc = new javax.swing.JMenuItem();
+        jMclientes = new javax.swing.JMenu();
+        jMcadastrarcliente = new javax.swing.JMenuItem();
+        jMlistarclientes = new javax.swing.JMenuItem();
+        jMalugueis = new javax.swing.JMenu();
+        jMnovoaluguel = new javax.swing.JMenuItem();
+        jMlistaralugueis = new javax.swing.JMenuItem();
+        jMpagamento = new javax.swing.JMenuItem();
+        jMveiculos = new javax.swing.JMenu();
+        jmiCadastroAuto = new javax.swing.JMenuItem();
+        jmiBici = new javax.swing.JMenuItem();
+        jmiListarVeic = new javax.swing.JMenuItem();
+        jMsair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jMenu1.setText("File");
-        jMenuBar1.add(jMenu1);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 476, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 424, Short.MAX_VALUE)
+        );
 
-        jMenu2.setText("Edit");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.setBackground(new java.awt.Color(120, 120, 120));
+        jMenuBar1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jMenuBar1.setPreferredSize(new java.awt.Dimension(321, 50));
+        jMenuBar1.setRequestFocusEnabled(false);
+
+        jMareafunc.setText("Área do Funcionário");
+        jMareafunc.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMcadfunc.setText("Cadastrar Funcionário");
+        jMcadfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMcadfuncActionPerformed(evt);
+            }
+        });
+        jMareafunc.add(jMcadfunc);
+
+        jMlistarfunc.setText("Listar Funcionários");
+        jMareafunc.add(jMlistarfunc);
+
+        jMenuBar1.add(jMareafunc);
+
+        jMclientes.setText("Clientes");
+        jMclientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMcadastrarcliente.setText("Cadastrar Cliente");
+        jMclientes.add(jMcadastrarcliente);
+
+        jMlistarclientes.setText("Listar Clientes");
+        jMlistarclientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistarclientesActionPerformed(evt);
+            }
+        });
+        jMclientes.add(jMlistarclientes);
+
+        jMenuBar1.add(jMclientes);
+
+        jMalugueis.setText("Aluguéis");
+        jMalugueis.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMnovoaluguel.setText("Novo Aluguel");
+        jMalugueis.add(jMnovoaluguel);
+
+        jMlistaralugueis.setText("Listar Aluguéis");
+        jMalugueis.add(jMlistaralugueis);
+
+        jMpagamento.setText("Pagamento");
+        jMalugueis.add(jMpagamento);
+
+        jMenuBar1.add(jMalugueis);
+
+        jMveiculos.setText("Veículos");
+        jMveiculos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jmiCadastroAuto.setText("Cadastrar Automóvel");
+        jMveiculos.add(jmiCadastroAuto);
+
+        jmiBici.setText("Cadastrar Bicicleta");
+        jMveiculos.add(jmiBici);
+
+        jmiListarVeic.setText("Listar Veículos");
+        jMveiculos.add(jmiListarVeic);
+
+        jMenuBar1.add(jMveiculos);
+
+        jMsair.setText("Sair");
+        jMsair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jMenuBar1.add(jMsair);
 
         setJMenuBar(jMenuBar1);
 
@@ -44,15 +137,31 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 480, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMcadfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMcadfuncActionPerformed
+        // TODO add your handling code here:
+        TelaCadastro telaCadastro = new TelaCadastro();
+        telaCadastro.setVisible(true);
+    }//GEN-LAST:event_jMcadfuncActionPerformed
+
+    private void jMlistarclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarclientesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMlistarclientesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -90,8 +199,22 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMalugueis;
+    private javax.swing.JMenu jMareafunc;
+    private javax.swing.JMenuItem jMcadastrarcliente;
+    private javax.swing.JMenuItem jMcadfunc;
+    private javax.swing.JMenu jMclientes;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMlistaralugueis;
+    private javax.swing.JMenuItem jMlistarclientes;
+    private javax.swing.JMenuItem jMlistarfunc;
+    private javax.swing.JMenuItem jMnovoaluguel;
+    private javax.swing.JMenuItem jMpagamento;
+    private javax.swing.JMenu jMsair;
+    private javax.swing.JMenu jMveiculos;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenuItem jmiBici;
+    private javax.swing.JMenuItem jmiCadastroAuto;
+    private javax.swing.JMenuItem jmiListarVeic;
     // End of variables declaration//GEN-END:variables
 }

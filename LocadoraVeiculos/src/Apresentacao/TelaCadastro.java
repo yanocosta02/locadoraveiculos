@@ -162,7 +162,8 @@ public class TelaCadastro extends javax.swing.JFrame {
     private void jBvoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBvoltarActionPerformed
         // TODO add your handling code here:
         TelaLogin telaLogin = new TelaLogin(locadora);
-        telaLogin.setVisible(true);                
+        telaLogin.setVisible(true);   
+        this.dispose();
     }//GEN-LAST:event_jBvoltarActionPerformed
 
     private void jBlistarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlistarFuncActionPerformed

@@ -18,7 +18,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     public TelaLogin(Locadora locadora) {
-         this.locadora = locadora;
+        this.locadora = locadora;
         initComponents();
     }
 
@@ -138,11 +138,8 @@ public class TelaLogin extends javax.swing.JFrame {
         
         if (funcionarioLogado != null) {
             JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
-            // Aqui você pode abrir a próxima tela após o login bem-sucedido
-            // Por exemplo:
-            // TelaPrincipal telaPrincipal = new TelaPrincipal();
-            // telaPrincipal.setVisible(true);
-            // this.dispose(); // Fecha a tela de login após o login bem-sucedido
+            funcionarioLogado.acessarConta();
+            this.dispose(); // Fecha a tela de login após o login bem-sucedido
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
         }       
