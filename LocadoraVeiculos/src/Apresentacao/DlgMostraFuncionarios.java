@@ -59,7 +59,6 @@ public class DlgMostraFuncionarios extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(500, 500));
 
         jTfunc.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -98,7 +97,7 @@ public class DlgMostraFuncionarios extends javax.swing.JDialog {
         jScrollPane1.setViewportView(jTfunc);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Lista de Funcionários Cadastrados");
+        jLabel1.setText("Lista de Funcionários");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

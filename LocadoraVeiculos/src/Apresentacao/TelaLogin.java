@@ -123,18 +123,25 @@ public class TelaLogin extends javax.swing.JFrame {
 
     private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
         // TODO add your handling code here:
-        TelaCadastro telaCadastro = new TelaCadastro();
+        DlgCadastroFuncionario telaCadastro = new DlgCadastroFuncionario(null, true, locadora);
         telaCadastro.setVisible(true);
-        this.dispose(); // Fecha a tela de login ao abrir a de cadastro
+        
     }//GEN-LAST:event_jBcadastrarActionPerformed
 
     private void jBentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBentrarActionPerformed
         // TODO add your handling code here:
         // Lógica para o botão de login
+        TelaInicial telaInicial = new TelaInicial(); // Instancia a tela inicial
+        telaInicial.setVisible(true); // Mostra a tela inicial
+        this.dispose(); // Fecha a tela de login após o login bem-sucedido
+        /*
+        
         String usuario = jTusuario.getText();
         String senha = jPsenha.getText();
-        
+         
         Funcionario funcionarioLogado = locadora.realizarLogin(usuario, senha);
+        funcionarioLogado.acessarConta();
+        
         
         if (funcionarioLogado != null) {
             JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
@@ -142,7 +149,8 @@ public class TelaLogin extends javax.swing.JFrame {
             this.dispose(); // Fecha a tela de login após o login bem-sucedido
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
-        }       
+        } 
+        */
     }//GEN-LAST:event_jBentrarActionPerformed
 
     /**

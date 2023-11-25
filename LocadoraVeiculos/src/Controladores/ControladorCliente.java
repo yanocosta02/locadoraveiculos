@@ -12,9 +12,20 @@ import locadoraveiculos.Cliente;
  * @author Yan
  */
 public class ControladorCliente {
+    private static ControladorCliente instance;
     ArrayList<Cliente> listaClientes = new ArrayList<>();
-
-    public void cadastrar(Cliente c) {
+    
+    
+    //padrão singleton para ficar a mesma classe para guardar as informações
+    public static ControladorCliente getInstance() {
+        if (instance == null) {
+            instance = new ControladorCliente();
+            // Inicialize outros atributos, se necessário
+        }
+        return instance;
+    }
+    
+    public void Cadastrar(Cliente c) {
         if (!existeCliente(c.getCpf())) {
             listaClientes.add(c);
         } else {
@@ -35,7 +46,7 @@ public class ControladorCliente {
         return null; // Se não encontrar o cliente com o CPF especificado
     }
 
-    private boolean existeCliente(int cpf) {
+    public boolean existeCliente(int cpf) {
         return buscaCliente(cpf) != null;
     }
 }

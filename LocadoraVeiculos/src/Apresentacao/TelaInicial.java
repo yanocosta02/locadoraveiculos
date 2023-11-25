@@ -4,9 +4,8 @@
  */
 package Apresentacao;
 
-import java.awt.CardLayout;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
+import Controladores.ControladorCliente;
+import Controladores.Locadora;
 
 /**
  *
@@ -17,6 +16,10 @@ public class TelaInicial extends javax.swing.JFrame {
     /**
      * Creates new form TelaInicial
      */
+
+    Locadora locadora = Locadora.getInstance();
+    ControladorCliente controladorcliente = ControladorCliente.getInstance();
+
     public TelaInicial() {
         initComponents();
         
@@ -48,6 +51,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jmiBici = new javax.swing.JMenuItem();
         jmiListarVeic = new javax.swing.JMenuItem();
         jMsair = new javax.swing.JMenu();
+        jMencerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +83,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMareafunc.add(jMcadfunc);
 
         jMlistarfunc.setText("Listar Funcionários");
+        jMlistarfunc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistarfuncActionPerformed(evt);
+            }
+        });
         jMareafunc.add(jMlistarfunc);
 
         jMenuBar1.add(jMareafunc);
@@ -87,6 +96,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMclientes.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMcadastrarcliente.setText("Cadastrar Cliente");
+        jMcadastrarcliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMcadastrarclienteActionPerformed(evt);
+            }
+        });
         jMclientes.add(jMcadastrarcliente);
 
         jMlistarclientes.setText("Listar Clientes");
@@ -129,6 +143,15 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jMsair.setText("Sair");
         jMsair.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+
+        jMencerrar.setText("Encerrar Sessão");
+        jMencerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMencerrarActionPerformed(evt);
+            }
+        });
+        jMsair.add(jMencerrar);
+
         jMenuBar1.add(jMsair);
 
         setJMenuBar(jMenuBar1);
@@ -155,13 +178,34 @@ public class TelaInicial extends javax.swing.JFrame {
 
     private void jMcadfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMcadfuncActionPerformed
         // TODO add your handling code here:
-        TelaCadastro telaCadastro = new TelaCadastro();
+        DlgCadastroFuncionario telaCadastro = new DlgCadastroFuncionario(null, true, locadora);
         telaCadastro.setVisible(true);
     }//GEN-LAST:event_jMcadfuncActionPerformed
 
     private void jMlistarclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarclientesActionPerformed
         // TODO add your handling code here:
+        DlgMostraClientes dlg = new DlgMostraClientes(null, true, controladorcliente);
+        dlg.setVisible(true);
     }//GEN-LAST:event_jMlistarclientesActionPerformed
+
+    private void jMcadastrarclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMcadastrarclienteActionPerformed
+        // TODO add your handling code here:
+        DlgCadastroCliente telaCadastroCli = new DlgCadastroCliente(null, true, controladorcliente);
+        telaCadastroCli.setVisible(true);
+    }//GEN-LAST:event_jMcadastrarclienteActionPerformed
+
+    private void jMencerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMencerrarActionPerformed
+        // TODO add your handling code here:
+        TelaLogin telaLogin = new TelaLogin(locadora);
+        telaLogin.setVisible(true);   
+        this.dispose();     
+    }//GEN-LAST:event_jMencerrarActionPerformed
+
+    private void jMlistarfuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistarfuncActionPerformed
+        // TODO add your handling code here:
+        DlgMostraFuncionarios dlg = new DlgMostraFuncionarios(null, true, locadora);
+        dlg.setVisible(true);
+    }//GEN-LAST:event_jMlistarfuncActionPerformed
 
     /**
      * @param args the command line arguments
@@ -204,6 +248,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMcadastrarcliente;
     private javax.swing.JMenuItem jMcadfunc;
     private javax.swing.JMenu jMclientes;
+    private javax.swing.JMenuItem jMencerrar;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMlistaralugueis;
     private javax.swing.JMenuItem jMlistarclientes;
