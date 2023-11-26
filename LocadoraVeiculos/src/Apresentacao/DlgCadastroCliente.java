@@ -6,7 +6,7 @@ package Apresentacao;
 
 import Controladores.ControladorCliente;
 import javax.swing.JOptionPane;
-import locadoraveiculos.Cliente;
+import Modelo.Cliente;
 
 /**
  *

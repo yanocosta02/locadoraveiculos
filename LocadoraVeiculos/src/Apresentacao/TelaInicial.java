@@ -134,6 +134,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMveiculos.add(jmiCadastroAuto);
 
         jmiBici.setText("Cadastrar Bicicleta");
+        jmiBici.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiBiciActionPerformed(evt);
+            }
+        });
         jMveiculos.add(jmiBici);
 
         jmiListarVeic.setText("Listar Veículos");
@@ -206,6 +211,12 @@ public class TelaInicial extends javax.swing.JFrame {
         DlgMostraFuncionarios dlg = new DlgMostraFuncionarios(null, true, locadora);
         dlg.setVisible(true);
     }//GEN-LAST:event_jMlistarfuncActionPerformed
+
+    private void jmiBiciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiBiciActionPerformed
+        // TODO add your handling code here:
+        DlgCadastroBicicleta dlg = new DlgCadastroBicicleta(null, true, locadora);
+        dlg.setVisible(true);       
+    }//GEN-LAST:event_jmiBiciActionPerformed
 
     /**
      * @param args the command line arguments

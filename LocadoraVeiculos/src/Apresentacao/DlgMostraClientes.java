@@ -6,7 +6,7 @@ package Apresentacao;
 
 import Controladores.ControladorCliente;
 import java.util.ArrayList;
-import locadoraveiculos.Cliente;
+import Modelo.Cliente;
 
 /**
  *

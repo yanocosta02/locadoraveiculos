@@ -5,9 +5,10 @@
 package Controladores;
 
 import java.util.ArrayList;
-import locadoraveiculos.Funcionario;
-import locadoraveiculos.Veiculo;
-
+import Modelo.Bicicleta;
+import Modelo.Funcionario;
+import Modelo.Veiculo;
+import Modelo.Seguro;
 /**
  *
  * @author Yan
@@ -16,7 +17,7 @@ public class Locadora {
     private static Locadora instance;
     private ArrayList<Funcionario> funcionarios = new ArrayList<>();
     private ArrayList<Veiculo> veiculos = new ArrayList<>();
-
+    private Seguro novoseguro = new Seguro();
     public Locadora(){
         
     }
@@ -72,6 +73,20 @@ public class Locadora {
             }
         }
         return null; // Se não encontrar veículo com o modelo especificado
+    }
+    public boolean buscaVeiculo(int id) {
+    for (Veiculo veiculo : veiculos) {
+        if (veiculo.getIdVeiculo() == id) {
+            return true; // Já existe um veículo com este ID cadastrado
+        }
+    }
+    return false; // Não existe veículo com este ID cadastrado
+    }
+    public void criarSeguro(){
+        novoseguro.setNomeSeguro("plus");
+        novoseguro.setNomeSeguradora("locadora");
+        novoseguro.setPreco(100);
+        novoseguro.setDescricao("único");
     }
 }
 

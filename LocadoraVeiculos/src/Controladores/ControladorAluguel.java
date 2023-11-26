@@ -5,7 +5,7 @@
 package Controladores;
 
 import java.util.ArrayList;
-import locadoraveiculos.Aluguel;
+import Modelo.Aluguel;
 
 /**
  *

@@ -3,15 +3,19 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/DlgCadastroCliente.java</file>
             <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/DlgMostraClientes.java</file>
-            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/TelaCadastro.java</file>
-            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/TelaCadastroCliente.java</file>
             <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Controladores/ControladorCliente.java</file>
-            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/locadoraveiculos/Funcionario.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Modelo/Bicicleta.java</file>
             <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/TelaInicial.java</file>
-            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/locadoraveiculos/Cliente.java</file>
             <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/TelaLogin.java</file>
-            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/DlgMostraFuncionarios.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Modelo/Automovel.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Modelo/Veiculo.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Modelo/Seguro.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Apresentacao/DlgCadastroBicicleta.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Controladores/Locadora.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Controladores/ControladorAluguel.java</file>
+            <file>file:/C:/Users/Yan/Documents/NetBeansProjects/LocadoraVeiculos/src/Modelo/LocadoraVeiculos.java</file>
         </group>
     </open-files>
 </project-private>
