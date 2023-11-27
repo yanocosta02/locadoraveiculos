@@ -5,8 +5,8 @@
 package Apresentacao;
 
 import Controladores.Locadora;
+import Modelo.Funcionario;
 import javax.swing.JOptionPane;
-import locadoraveiculos.Funcionario;
 
 /**
  *

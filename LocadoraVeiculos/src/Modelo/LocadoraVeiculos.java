@@ -19,13 +19,12 @@ public class LocadoraVeiculos {
     public static void main(String[] args) {
         // TODO code application logic here
         Locadora locadora = Locadora.getInstance();
-        
         // Cria uma instância da tela de login
         TelaLogin telaLogin = new TelaLogin(locadora);
-
-        //Cria o seguro já na main
-        locadora.criarSeguro();
         
+        // Cria o seguro
+        locadora.criarSeguro();
+
         // Torna a tela de login visível
         telaLogin.setVisible(true);
     }

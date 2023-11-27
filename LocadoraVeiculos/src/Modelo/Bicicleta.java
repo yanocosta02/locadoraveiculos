@@ -11,6 +11,16 @@ package Modelo;
 public class Bicicleta extends Veiculo {
     String tipoBicicleta;
 
+    // Construtor
+    public Bicicleta(int idVeiculo, String modelo, String cor, String marca, double valorDia, String tipoBicicleta) {
+        this.idVeiculo = idVeiculo;
+        this.modelo = modelo;
+        this.cor = cor;
+        this.marca = marca;
+        this.valorDia = valorDia;
+        this.tipoBicicleta = tipoBicicleta;
+    }
+
     public String getTipoBicicleta() {
         return tipoBicicleta;
     }
@@ -20,8 +30,7 @@ public class Bicicleta extends Veiculo {
     }
 
     // Construtor
-    public Bicicleta(int idVeiculo, String modelo, String cor, String marca, double valorDia, String tipoBicicleta) {
-        this.idVeiculo = idVeiculo;
+    public Bicicleta(String modelo, String cor, String marca, double valorDia, String tipoBicicleta) {
         this.modelo = modelo;
         this.cor = cor;
         this.marca = marca;

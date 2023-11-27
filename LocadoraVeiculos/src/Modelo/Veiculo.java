@@ -15,8 +15,7 @@ public class Veiculo {
     String marca;
     Double valorDia;
 
-    public Veiculo(int idVeiculo, String modelo, String cor, String marca, Double valorDia) {
-        this.idVeiculo = idVeiculo;
+    public Veiculo(String modelo, String cor, String marca, Double valorDia) {
         this.modelo = modelo;
         this.cor = cor;
         this.marca = marca;
@@ -26,14 +25,15 @@ public class Veiculo {
     public Veiculo(){
         
     }
-    
+
     public int getIdVeiculo() {
         return idVeiculo;
     }
 
-    public void setIdVeiculo(int idVeiculo) {
+    public void setModelo(int idVeiculo) {
         this.idVeiculo = idVeiculo;
     }
+
     
     public String getModelo() {
         return modelo;

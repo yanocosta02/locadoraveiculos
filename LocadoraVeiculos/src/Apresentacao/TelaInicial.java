@@ -49,7 +49,8 @@ public class TelaInicial extends javax.swing.JFrame {
         jMveiculos = new javax.swing.JMenu();
         jmiCadastroAuto = new javax.swing.JMenuItem();
         jmiBici = new javax.swing.JMenuItem();
-        jmiListarVeic = new javax.swing.JMenuItem();
+        jmiListarAuto = new javax.swing.JMenuItem();
+        jMilistarBici = new javax.swing.JMenuItem();
         jMsair = new javax.swing.JMenu();
         jMencerrar = new javax.swing.JMenuItem();
 
@@ -131,6 +132,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMveiculos.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jmiCadastroAuto.setText("Cadastrar Automóvel");
+        jmiCadastroAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiCadastroAutoActionPerformed(evt);
+            }
+        });
         jMveiculos.add(jmiCadastroAuto);
 
         jmiBici.setText("Cadastrar Bicicleta");
@@ -141,8 +147,22 @@ public class TelaInicial extends javax.swing.JFrame {
         });
         jMveiculos.add(jmiBici);
 
-        jmiListarVeic.setText("Listar Veículos");
-        jMveiculos.add(jmiListarVeic);
+        jmiListarAuto.setText("Listar Automóveis");
+        jmiListarAuto.setToolTipText("");
+        jmiListarAuto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiListarAutoActionPerformed(evt);
+            }
+        });
+        jMveiculos.add(jmiListarAuto);
+
+        jMilistarBici.setText("Listar Bicicletas");
+        jMilistarBici.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMilistarBiciActionPerformed(evt);
+            }
+        });
+        jMveiculos.add(jMilistarBici);
 
         jMenuBar1.add(jMveiculos);
 
@@ -218,6 +238,24 @@ public class TelaInicial extends javax.swing.JFrame {
         dlg.setVisible(true);       
     }//GEN-LAST:event_jmiBiciActionPerformed
 
+    private void jmiCadastroAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiCadastroAutoActionPerformed
+        // TODO add your handling code here:
+        DlgCadastroAutomovel dlg = new DlgCadastroAutomovel(null, true, locadora);
+        dlg.setVisible(true);  
+    }//GEN-LAST:event_jmiCadastroAutoActionPerformed
+
+    private void jmiListarAutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmiListarAutoActionPerformed
+        // TODO add your handling code here:
+        DlgMostraAutomoveis dlg = new DlgMostraAutomoveis(null, true, locadora);
+        dlg.setVisible(true);  
+    }//GEN-LAST:event_jmiListarAutoActionPerformed
+
+    private void jMilistarBiciActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMilistarBiciActionPerformed
+        // TODO add your handling code here:
+        DlgMostraBicicletas dlg = new DlgMostraBicicletas(null, true, locadora);
+        dlg.setVisible(true);  
+    }//GEN-LAST:event_jMilistarBiciActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -261,6 +299,7 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMclientes;
     private javax.swing.JMenuItem jMencerrar;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMilistarBici;
     private javax.swing.JMenuItem jMlistaralugueis;
     private javax.swing.JMenuItem jMlistarclientes;
     private javax.swing.JMenuItem jMlistarfunc;
@@ -271,6 +310,6 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JMenuItem jmiBici;
     private javax.swing.JMenuItem jmiCadastroAuto;
-    private javax.swing.JMenuItem jmiListarVeic;
+    private javax.swing.JMenuItem jmiListarAuto;
     // End of variables declaration//GEN-END:variables
 }

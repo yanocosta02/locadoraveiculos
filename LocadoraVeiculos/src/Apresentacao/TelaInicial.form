@@ -105,6 +105,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Cadastrar Autom&#xf3;vel"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiCadastroAutoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jmiBici">
               <Properties>
@@ -114,10 +117,22 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiBiciActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jmiListarVeic">
+            <MenuItem class="javax.swing.JMenuItem" name="jmiListarAuto">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Listar Ve&#xed;culos"/>
+                <Property name="text" type="java.lang.String" value="Listar Autom&#xf3;veis"/>
+                <Property name="toolTipText" type="java.lang.String" value=""/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jmiListarAutoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="jMilistarBici">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Listar Bicicletas"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMilistarBiciActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

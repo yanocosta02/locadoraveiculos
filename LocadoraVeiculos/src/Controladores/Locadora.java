@@ -4,6 +4,7 @@
  */
 package Controladores;
 
+import Modelo.Aluguel;
 import java.util.ArrayList;
 import Modelo.Bicicleta;
 import Modelo.Funcionario;
@@ -82,11 +83,16 @@ public class Locadora {
     }
     return false; // Não existe veículo com este ID cadastrado
     }
+    
+    public ArrayList <Veiculo> listarVeiculos() {
+        return veiculos;
+    }    
     public void criarSeguro(){
         novoseguro.setNomeSeguro("plus");
         novoseguro.setNomeSeguradora("locadora");
         novoseguro.setPreco(100);
         novoseguro.setDescricao("único");
     }
+
 }
 

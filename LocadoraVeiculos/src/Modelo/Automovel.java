@@ -30,7 +30,8 @@ public class Automovel extends Veiculo {
 
     
     // Construtor
-    public Automovel(String modelo, String cor, String marca, Double valorDia, String placa, int anoFabricacao) {
+    public Automovel(int idVeiculo, String modelo, String cor, String marca, Double valorDia, String placa, int anoFabricacao) {
+        this.idVeiculo = idVeiculo;
         this.modelo = modelo;
         this.cor = cor;
         this.marca = marca;
