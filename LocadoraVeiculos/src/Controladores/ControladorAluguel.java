@@ -36,25 +36,26 @@ public class ControladorAluguel {
         return listaAlugueis;
     }    
 
-    public boolean verificarDisponibilidadeVeiculo(Veiculo veiculo, Date dataInicio, Date dataFim) {
-
-        if (dataFim.before(dataInicio)) {
-            return false; // A data de fim é antes da data de início
-        }
-
-        for (Aluguel aluguel : listaAlugueis) {
-            Date aluguelDataInicio = aluguel.getDataIni();
-            Date aluguelDataFim = aluguel.getDataFim();
-
-            // Verifica se há alguma sobreposição nas datas
-            if ((dataInicio.before(aluguelDataFim) || dataInicio.equals(aluguelDataFim)) &&
-                (dataFim.after(aluguelDataInicio) || dataFim.equals(aluguelDataInicio))) {
-                return false; // Há sobreposição de datas, o veículo não está disponível
-            }
-        }
-
-        return true; // O veículo está disponível para locação nessas datas
+public boolean verificarDisponibilidadeVeiculo(Veiculo veiculo, Date dataInicio, Date dataFim) {
+    if (dataFim.before(dataInicio)) {
+        return false; // A data de fim é antes da data de início
     }
+
+    for (Aluguel aluguel : listaAlugueis) {
+        Veiculo veiculoAlugado = aluguel.getVeiculo();
+        Date aluguelDataInicio = aluguel.getDataIni();
+        Date aluguelDataFim = aluguel.getDataFim();
+
+        // Verifica se o veículo é o mesmo e se há sobreposição nas datas
+        if (veiculoAlugado.equals(veiculo) &&
+                ((dataInicio.before(aluguelDataFim) || dataInicio.equals(aluguelDataFim)) &&
+                (dataFim.after(aluguelDataInicio) || dataFim.equals(aluguelDataInicio)))) {
+            return false; // Há sobreposição de datas, o veículo não está disponível
+        }
+    }
+
+    return true; // O veículo está disponível para locação nessas datas
+}
     public int getNextIdAluguel() {
         return ++ultimoIdAluguel;
     }

@@ -5,11 +5,8 @@
 package Apresentacao;
 
 import Controladores.ControladorAluguel;
-import Controladores.ControladorCliente;
-import Controladores.Locadora;
 import Modelo.Aluguel;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -42,7 +39,7 @@ public class DlgMostraAlugueis extends javax.swing.JDialog {
             jTalugueis.setValueAt(alugueis.get(i).getDataFim(), i, 2);
             jTalugueis.setValueAt(alugueis.get(i).getVeiculo().getIdVeiculo(), i, 3);
             jTalugueis.setValueAt(alugueis.get(i).getCliente().getCpf(), i, 4);
-            jTalugueis.setValueAt(alugueis.get(i).getSeguro().getNomeSeguro(), i, 5);
+            //jTalugueis.setValueAt(alugueis.get(i).getSeguro().getNomeSeguro(), i, 5);
         }
     }
     /**

@@ -14,7 +14,8 @@ public class Aluguel {
     private Seguro seguro;
     private Veiculo veiculo;
     private Cliente cliente;
-
+    private Pagamento pag;
+    
     public int getIdAluguel() {
         return idAluguel;
     }
@@ -39,11 +40,10 @@ public class Aluguel {
         this.dataFim = dataFim;
     }
 
-    public Aluguel(int idAluguel, Date dataIni, Date dataFim, Veiculo veiculo, Cliente cliente, Seguro seguro) {
+    public Aluguel(int idAluguel, Date dataIni, Date dataFim, Veiculo veiculo, Cliente cliente) {
         this.idAluguel = idAluguel;
         this.dataIni = dataIni;
         this.dataFim = dataFim;
-        this.seguro = seguro;
         this.veiculo = veiculo;
         this.cliente = cliente;
         
@@ -51,14 +51,6 @@ public class Aluguel {
 
     public void adicionarSeguro(Seguro seguro) {
         this.seguro = seguro;
-    }
-    
-    public void adicionarVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
-    }
-    
-    public void adicionarCliente(Veiculo veiculo) {
-        this.veiculo = veiculo;
     }
 
     public Seguro getSeguro() {
