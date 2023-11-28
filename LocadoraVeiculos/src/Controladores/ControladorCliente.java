@@ -45,6 +45,7 @@ public class ControladorCliente {
         }
         return null; // Se não encontrar o cliente com o CPF especificado
     }
+    
 
     public boolean existeCliente(int cpf) {
         return buscaCliente(cpf) != null;

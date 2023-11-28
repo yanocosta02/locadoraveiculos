@@ -2,17 +2,20 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Modelo;
+package locadoraveiculos;
 
 import java.util.Date;
 
-
+/**
+ *
+ * @author Yan
+ */
 public class Aluguel {
     private Date dataIni;
     private Date dataFim;
+    private String status;
+    private String modelo;
     private Seguro seguro;
-    private Veiculo veiculo;
-    private Cliente cliente;
 
     public Date getDataIni() {
         return dataIni;
@@ -30,20 +33,22 @@ public class Aluguel {
         this.dataFim = dataFim;
     }
 
-    public void Aluguel(Date dataFim, Date dataIni, Veiculo veiculo, Cliente cliente, Seguro seguro) {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public void novoAluguel(Date dataFim, Date dataIni, String status, String modelo) {
         this.dataFim = dataFim;
         this.dataIni = dataIni;
-        this.seguro = seguro;
-        this.veiculo = veiculo;
-        this.cliente = cliente;
-        
+        this.status = status;
+        this.modelo = modelo;
     }
 
     public void adicionarSeguro(Seguro seguro) {
         this.seguro = seguro;
-    }
-    
-    public void adicionarVeiculo(Veiculo veiculo) {
-        this.veiculo = veiculo;
     }
 }

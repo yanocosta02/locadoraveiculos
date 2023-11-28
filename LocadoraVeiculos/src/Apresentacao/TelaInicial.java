@@ -6,6 +6,7 @@ package Apresentacao;
 
 import Controladores.ControladorCliente;
 import Controladores.Locadora;
+import Controladores.ControladorAluguel;
 
 /**
  *
@@ -19,6 +20,7 @@ public class TelaInicial extends javax.swing.JFrame {
 
     Locadora locadora = Locadora.getInstance();
     ControladorCliente controladorcliente = ControladorCliente.getInstance();
+    ControladorAluguel controladorAluguel = ControladorAluguel.getInstance();
 
     public TelaInicial() {
         initComponents();
@@ -118,6 +120,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMalugueis.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
 
         jMnovoaluguel.setText("Novo Aluguel");
+        jMnovoaluguel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMnovoaluguelActionPerformed(evt);
+            }
+        });
         jMalugueis.add(jMnovoaluguel);
 
         jMlistaralugueis.setText("Listar Aluguéis");
@@ -255,6 +262,12 @@ public class TelaInicial extends javax.swing.JFrame {
         DlgMostraBicicletas dlg = new DlgMostraBicicletas(null, true, locadora);
         dlg.setVisible(true);  
     }//GEN-LAST:event_jMilistarBiciActionPerformed
+
+    private void jMnovoaluguelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMnovoaluguelActionPerformed
+            // TODO add your handling code here:
+        DlgCadastroAluguel dlg = new DlgCadastroAluguel(null, true, controladorAluguel);
+        dlg.setVisible(true);  
+    }//GEN-LAST:event_jMnovoaluguelActionPerformed
 
     /**
      * @param args the command line arguments

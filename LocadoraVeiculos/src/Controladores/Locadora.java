@@ -93,6 +93,24 @@ public class Locadora {
         novoseguro.setPreco(100);
         novoseguro.setDescricao("único");
     }
+    
+    public ArrayList<Veiculo> buscarVeiculoPorModelo(String modelo) {
+        ArrayList <Veiculo> veiculosEncontrados = new ArrayList<>();
+        
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getModelo().equalsIgnoreCase(modelo)) {
+                veiculosEncontrados.add(veiculo);
+            }
+        }
+        return veiculosEncontrados;
+    }
+
+    public void exibirVeiculos( ArrayList<Veiculo> veiculos) {
+        System.out.println("Carros encontrados:");
+        for (Veiculo veiculo : veiculos) {
+            System.out.println("Modelo: " + veiculo.getModelo() + ", Placa: " + veiculo.getIdVeiculo());
+        }
+    }
 
 }
 
