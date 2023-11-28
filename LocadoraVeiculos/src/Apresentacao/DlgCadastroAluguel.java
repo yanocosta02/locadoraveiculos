@@ -34,7 +34,6 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
    ControladorAluguel controladorAluguel = ControladorAluguel.getInstance();
    Locadora locadora = Locadora.getInstance();
    MaskFormatter mfdata;
-   Seguro novoseguro = new Seguro();
    
    public DlgCadastroAluguel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -125,6 +124,11 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
         });
 
         jRcontratarSeguro.setText("Contratar Seguro (Plus)");
+        jRcontratarSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRcontratarSeguroActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -262,6 +266,7 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
         int idAluguel = controladorAluguel.getNextIdAluguel();
         Date dataIni;
         Date dataFim;
+        Seguro seguro = locadora.getSeguro();
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
@@ -271,6 +276,11 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
             clienteLocador = controladorCliente.buscaCliente(cpf);
             veiculoLocado = locadora.buscaVeiculoPorId(idVeiculo);
             Aluguel novoAluguel = new Aluguel(idAluguel, dataIni, dataFim, veiculoLocado, clienteLocador);
+        // Verifica se o radio button de contratação de seguro está selecionado
+        if (jRcontratarSeguro.isSelected()) {
+            novoAluguel.adicionarSeguro(seguro);
+            
+        }
             if (controladorAluguel.verificarDisponibilidadeVeiculo(veiculoLocado, dataIni, dataFim)) {
                 controladorAluguel.CriarAluguel(novoAluguel);
                 JOptionPane.showMessageDialog(null, "Veículo reservado");
@@ -281,6 +291,21 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
             // Tratar adequadamente caso ocorra um erro de parsing de data
             ex.printStackTrace();
         }
+        
+        
+        TelaInicial telaInicial = new TelaInicial(); // Abre a nova janela atualizada e depois fecha a desatualizada
+        telaInicial.setVisible(true); // Mostra a tela inicial
+        this.dispose(); 
+        
+        // Fechar a Tela Inicial antiga desatualizada
+        java.awt.Window win[] = java.awt.Window.getWindows(); // Obtém todas as janelas abertas
+        for (int i = 0; i < 2; i++) {
+            if (win[i] instanceof TelaInicial) { // Verifica se é uma instância de TelaInicial
+                win[i].dispose(); // Fecha a TelaInicial
+            }
+        }        
+
+
     }//GEN-LAST:event_jBcadastrarActionPerformed
 
     private void jFdatafimFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdatafimFocusLost
@@ -301,6 +326,10 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
     private void jFdatainiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdatainiFocusLost
         // TODO add your handling code here:
     }//GEN-LAST:event_jFdatainiFocusLost
+
+    private void jRcontratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRcontratarSeguroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRcontratarSeguroActionPerformed
 
     /**
      * @param args the command line arguments

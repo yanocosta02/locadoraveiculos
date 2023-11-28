@@ -9,6 +9,7 @@ import Controladores.Locadora;
 import Controladores.ControladorAluguel;
 import Modelo.Aluguel;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,20 +28,26 @@ public class TelaInicial extends javax.swing.JFrame {
     public TelaInicial() {
         initComponents();
         exibeInformacoes();
+        
     }
     private void exibeInformacoes() {
+        DefaultTableModel model = (DefaultTableModel) jTalugueis.getModel();
+        model.setRowCount(0); // Limpa a tabela para inserir os novos dados
         ArrayList<Aluguel> alugueis = controladorAluguel.listarAluguel();
-        // Defina o número de linhas na tabela com base na quantidade de automoveis
         
-        for (int i = 0; i < alugueis.size() && alugueis.get(i) != null; i++){
-            jTalugueis.setValueAt(alugueis.get(i).getIdAluguel(), i, 0);
-            jTalugueis.setValueAt(alugueis.get(i).getDataIni(), i, 1);
-            jTalugueis.setValueAt(alugueis.get(i).getDataFim(), i, 2);
-            jTalugueis.setValueAt(alugueis.get(i).getVeiculo().getIdVeiculo(), i, 3);
-            jTalugueis.setValueAt(alugueis.get(i).getCliente().getCpf(), i, 4);
-            jTalugueis.setValueAt(alugueis.get(i).getSeguro().getNomeSeguro(), i, 5);
+        for (Aluguel aluguel : alugueis) {
+            Object[] rowData = {
+                aluguel.getIdAluguel(),
+                aluguel.getDataIni(),
+                aluguel.getDataFim(),
+                aluguel.getVeiculo().getIdVeiculo(),
+                aluguel.getCliente().getCpf(),
+                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica"
+            };
+            model.addRow(rowData); // Adiciona uma nova linha com os dados do aluguel
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,6 +60,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTalugueis = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMareafunc = new javax.swing.JMenu();
         jMcadfunc = new javax.swing.JMenuItem();
@@ -73,62 +81,71 @@ public class TelaInicial extends javax.swing.JFrame {
         jMencerrar = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setBackground(new java.awt.Color(255, 0, 0));
 
         jTalugueis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "idAluguel", "DataIni", "DataFim", "idVeiculo", "idCliente", "TipoSeguro"
+                "idAluguel", "DataIni", "DataFim", "idVeiculo", "idCliente", "TipoSeguro", "StatusPag"
             }
         ));
         jTalugueis.setToolTipText("");
         jScrollPane3.setViewportView(jTalugueis);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel1.setText("GERENCIADOR DE ALUGUÉIS");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap(636, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 822, Short.MAX_VALUE)
                     .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 471, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 468, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addContainerGap()
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGap(38, 38, 38)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(39, Short.MAX_VALUE)))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(120, 120, 120));
@@ -198,6 +215,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMalugueis.add(jMlistaralugueis);
 
         jMpagamento.setText("Pagamento");
+        jMpagamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMpagamentoActionPerformed(evt);
+            }
+        });
         jMalugueis.add(jMpagamento);
 
         jMenuBar1.add(jMalugueis);
@@ -259,17 +281,11 @@ public class TelaInicial extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -342,6 +358,12 @@ public class TelaInicial extends javax.swing.JFrame {
         mostraAlugueis.setVisible(true);
     }//GEN-LAST:event_jMlistaralugueisActionPerformed
 
+    private void jMpagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMpagamentoActionPerformed
+        // TODO add your handling code here:
+        DlgCadastroPagamento cadastropag = new DlgCadastroPagamento(null, true, controladorAluguel);
+        cadastropag.setVisible(true);     
+    }//GEN-LAST:event_jMpagamentoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -378,6 +400,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMalugueis;
     private javax.swing.JMenu jMareafunc;
     private javax.swing.JMenuItem jMcadastrarcliente;

@@ -49,7 +49,6 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
         jtnomeFunc = new javax.swing.JTextField();
         jBcadastrarFunc = new javax.swing.JButton();
         jBvoltar = new javax.swing.JButton();
-        jBlistarFunc = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -76,13 +75,6 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
             }
         });
 
-        jBlistarFunc.setText("Listar todos");
-        jBlistarFunc.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBlistarFuncActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -90,7 +82,6 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jBlistarFunc)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -124,9 +115,7 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
                 .addComponent(jBcadastrarFunc)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jBvoltar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jBlistarFunc)
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,12 +166,6 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
         this.dispose();
     }//GEN-LAST:event_jBvoltarActionPerformed
 
-    private void jBlistarFuncActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBlistarFuncActionPerformed
-        // TODO add your handling code here:
-        DlgMostraFuncionarios dlg = new DlgMostraFuncionarios(null, true, locadora);
-        dlg.setVisible(true);
-    }//GEN-LAST:event_jBlistarFuncActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -228,7 +211,6 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBcadastrarFunc;
-    private javax.swing.JButton jBlistarFunc;
     private javax.swing.JButton jBvoltar;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;

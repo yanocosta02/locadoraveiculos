@@ -7,6 +7,8 @@ package Apresentacao;
 import Controladores.Locadora;
 import Modelo.Automovel;
 import Modelo.Veiculo;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,6 +31,24 @@ public class DlgMostraAutomoveis extends javax.swing.JDialog {
         super(parent, modal);
         this.l = l;
         initComponents();
+        DlgMostraAutomoveis self = this; // Referência para a instância atual da janela
+        jTautomoveis.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) { // Verifica o clique duplo
+                    int selectedRow = jTautomoveis.getSelectedRow();
+                    if (selectedRow != -1) { // Garante que uma linha foi selecionada
+                        Veiculo veiculoSelecionado = l.listarVeiculos().get(selectedRow);
+                        self.dispose();
+                        // Abre a tela de edição com os dados do veículo selecionado
+                        DlgEditarVeiculo telaEdicao = new DlgEditarVeiculo(null, true, veiculoSelecionado);
+                        telaEdicao.setVisible(true);
+
+                        // Aqui você pode recarregar os dados na tabela após a edição, se necessário
+                        // exibeInformacoes();
+                    }
+                }
+            }
+        });
         exibeInformacoes();
     }
     private void exibeInformacoes() {
@@ -142,6 +162,7 @@ public class DlgMostraAutomoveis extends javax.swing.JDialog {
     /**
      * @param args the command line arguments
      */
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -184,6 +205,7 @@ public class DlgMostraAutomoveis extends javax.swing.JDialog {
         });
     }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -121,6 +121,21 @@ public class Locadora {
             System.out.println("Modelo: " + veiculo.getModelo() + ", Placa: " + veiculo.getIdVeiculo());
         }
     }
-
+    public void removerVeiculoPorID(int idVeiculo) {
+        Veiculo veiculoParaRemover = null;
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getIdVeiculo() == idVeiculo) {
+                veiculoParaRemover = veiculo;
+                break;
+            }
+        }
+        if (veiculoParaRemover != null) {
+            veiculos.remove(veiculoParaRemover);
+        }
+    }
+    //pega o seguro criado no main
+    public Seguro getSeguro() {
+        return novoseguro;
+    }
 }
 

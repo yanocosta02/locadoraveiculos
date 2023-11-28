@@ -6,7 +6,12 @@ package Controladores;
 
 import java.util.ArrayList;
 import Modelo.Aluguel;
+import Modelo.Cliente;
+import Modelo.Seguro;
 import Modelo.Veiculo;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -17,7 +22,7 @@ public class ControladorAluguel {
     private static ControladorAluguel instance;
     private static int ultimoIdAluguel = 0;
     ArrayList <Aluguel> listaAlugueis = new ArrayList<>();
-    
+    ControladorCliente controladorCliente = ControladorCliente.getInstance();
    
     //padrão singleton para ficar a mesma classe para guardar as informações
     public static ControladorAluguel getInstance() {
@@ -59,11 +64,65 @@ public boolean verificarDisponibilidadeVeiculo(Veiculo veiculo, Date dataInicio,
     public int getNextIdAluguel() {
         return ++ultimoIdAluguel;
     }
-    public void exibirReservas() {
-        System.out.println("Alugueis encontrados:");
+    
+    public Aluguel buscaAluguelid(int id){
+        Aluguel saida = null;
         for (Aluguel aluguel : listaAlugueis) {
-            System.out.println("dataini: " + aluguel.getDataIni() + ", Placa: " + aluguel.getDataFim());
+            if (aluguel.getIdAluguel() == id) {
+                 saida = aluguel;
+            }
         }
+        return saida;
+    }
+    public double calculaMulta(int idAluguel, double valor){
+        Aluguel aluguel = buscaAluguelid( idAluguel);
+        Date aluguelDataFim = aluguel.getDataFim();
+        LocalDate dataAtual = LocalDate.now();
+        LocalDate DataFim = LocalDate.parse(aluguelDataFim.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Period periodo = dataAtual.until(DataFim);
+        int diferenca = periodo.getDays();
+
+        double multa = 0.07 * valor * diferenca;
+        return multa;
+    }
+    public double calculaSeguro(int idAluguel){
+        Aluguel aluguel = buscaAluguelid( idAluguel);
+        Seguro seguro = aluguel.getSeguro();
+        if(seguro == null){
+            return 0.0;
+        }else{
+            return seguro.getPreco();
+        }
+        
+    }
+    
+    public double calculaValor(int idAluguel){
+        Aluguel aluguel = buscaAluguelid( idAluguel);
+        Date aluguelDataIni = aluguel.getDataIni();
+        Date aluguelDataFim = aluguel.getDataFim();
+        LocalDate DataIni = LocalDate.parse(aluguelDataIni.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        LocalDate DataFim = LocalDate.parse(aluguelDataFim.toString(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        Period periodo = DataFim.until(DataIni); //calcula a diferença 
+        int dias = periodo.getDays();
+        Veiculo veiculo = aluguel.getVeiculo();
+        double valor = dias * veiculo.getValorDia();
+        return valor;
+    }
+    
+    public double calculaTotal(double seguro, double multa, double valor){
+        double total = seguro + multa + valor;
+        return total;
+    }
+    
+    public ArrayList<Aluguel> buscaAluguel(int cpf) {
+        ArrayList <Aluguel> alugueisEncontrados = new ArrayList<>();
+        Cliente cliente = controladorCliente.buscaCliente(cpf);
+        for (Aluguel aluguel : listaAlugueis) {
+            if (aluguel.getCliente().equals(cliente)) {
+                 alugueisEncontrados.add(aluguel);
+            }
+        }
+        return alugueisEncontrados;
     }
     
 }

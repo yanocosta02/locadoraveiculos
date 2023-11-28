@@ -8,6 +8,8 @@ import Controladores.Locadora;
 import Modelo.Bicicleta;
 import Modelo.Cliente;
 import Modelo.Veiculo;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 
@@ -30,6 +32,26 @@ public class DlgMostraBicicletas extends javax.swing.JDialog {
         super(parent, modal);
         this.l = l;
         initComponents();
+        exibeInformacoes();
+        DlgMostraBicicletas self = this; // Referência para a instância atual da janela
+        // Adicionando o evento de clique à tabela de bicicletas
+        jTbikes.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 2) { // Verifica o clique duplo
+                    int selectedRow = jTbikes.getSelectedRow();
+                    if (selectedRow != -1) { // Garante que uma linha foi selecionada
+                        Veiculo veiculoSelecionado = l.listarVeiculos().get(selectedRow);
+                        self.dispose();
+                        // Abre a tela de edição com os dados do veículo selecionado
+                        DlgEditarVeiculo telaEdicao = new DlgEditarVeiculo(null, true, veiculoSelecionado);
+                        telaEdicao.setVisible(true);
+
+                        // Aqui você pode recarregar os dados na tabela após a edição, se necessário
+                        // exibeInformacoes();
+                    }
+                }
+            }
+        });
         exibeInformacoes();
     }
 
@@ -59,6 +81,7 @@ public class DlgMostraBicicletas extends javax.swing.JDialog {
             }
         }
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

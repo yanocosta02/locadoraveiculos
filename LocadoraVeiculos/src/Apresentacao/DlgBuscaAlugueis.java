@@ -6,32 +6,31 @@ package Apresentacao;
 
 import Controladores.ControladorAluguel;
 import Modelo.Aluguel;
-import Modelo.Seguro;
 import java.util.ArrayList;
 
 /**
  *
  * @author Yan
  */
-public class DlgMostraAlugueis extends javax.swing.JDialog {
+public class DlgBuscaAlugueis extends javax.swing.JDialog {
 
     private ControladorAluguel c;
     /**
      * Creates new form DlgMostraAlugueis
      */
-    public DlgMostraAlugueis(java.awt.Frame parent, boolean modal) {
+    public DlgBuscaAlugueis(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    public DlgMostraAlugueis(java.awt.Frame parent, boolean modal, ControladorAluguel c) {
+    public DlgBuscaAlugueis(java.awt.Frame parent, boolean modal, ControladorAluguel c, ArrayList <Aluguel> alugueisEncontrados) {
         super(parent, modal);
         this.c = c;
         initComponents();
-        exibeInformacoes();
+        exibeInformacoes(alugueisEncontrados);
     }
     
-    private void exibeInformacoes() {
-        ArrayList<Aluguel> alugueis = c.listarAluguel();
+    private void exibeInformacoes(ArrayList<Aluguel> alugueisEncontrados) {
+        ArrayList<Aluguel> alugueis = alugueisEncontrados;
         // Defina o número de linhas na tabela com base na quantidade de automoveis
         
         for (int i = 0; i < alugueis.size() && alugueis.get(i) != null; i++){
@@ -40,12 +39,7 @@ public class DlgMostraAlugueis extends javax.swing.JDialog {
             jTalugueis.setValueAt(alugueis.get(i).getDataFim(), i, 2);
             jTalugueis.setValueAt(alugueis.get(i).getVeiculo().getIdVeiculo(), i, 3);
             jTalugueis.setValueAt(alugueis.get(i).getCliente().getCpf(), i, 4);
-            Seguro seguro = alugueis.get(i).getSeguro();
-            if (seguro != null) {
-                jTalugueis.setValueAt(seguro.getNomeSeguro(), i, 5);
-            } else {
-                jTalugueis.setValueAt("Não se aplica", i, 5);
-            }
+            //jTalugueis.setValueAt(alugueis.get(i).getSeguro().getNomeSeguro(), i, 5);
         }
     }
     /**
@@ -145,20 +139,21 @@ public class DlgMostraAlugueis extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(DlgMostraAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgBuscaAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(DlgMostraAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgBuscaAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(DlgMostraAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgBuscaAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(DlgMostraAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(DlgBuscaAlugueis.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                DlgMostraAlugueis dialog = new DlgMostraAlugueis(new javax.swing.JFrame(), true);
+                DlgBuscaAlugueis dialog = new DlgBuscaAlugueis(new javax.swing.JFrame(), true);
                 dialog.addWindowListener(new java.awt.event.WindowAdapter() {
                     @Override
                     public void windowClosing(java.awt.event.WindowEvent e) {

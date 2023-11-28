@@ -14,15 +14,17 @@ public class Pagamento {
     private String forma;
     private double valor;
     private double valorMulta;
-    private Date vencimento;
+    private double total;
+    private double seguro;
     private Date data;
 
-    public Pagamento(String forma, double valor, Date vencimento) {
+    public Pagamento(String forma, double valor, double total, double multa, double seguro) {
         this.forma = forma;
         this.valor = valor;
-        this.vencimento = vencimento;
-        this.valorMulta = 0.0; // Inicialmente, não há multa
+        this.total = total;
+        this.valorMulta = multa; // Inicialmente, não há multa
         this.data = new Date(); // Data atual como padrão
+        this.seguro = seguro;
     }
     
     public void processarPagamento(String forma, Date data) {
@@ -63,14 +65,6 @@ public class Pagamento {
 
     public void setValorMulta(double valorMulta) {
         this.valorMulta = valorMulta;
-    }
-
-    public Date getVencimento() {
-        return vencimento;
-    }
-
-    public void setVencimento(Date vencimento) {
-        this.vencimento = vencimento;
     }
 
     public Date getData() {
