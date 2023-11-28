@@ -8,8 +8,15 @@ import Controladores.ControladorCliente;
 import Controladores.ControladorAluguel;
 import javax.swing.JOptionPane;
 import Modelo.Aluguel;
+import Modelo.Cliente;
+import Modelo.Seguro;
 import Modelo.Veiculo;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JFormattedTextField;
+import javax.swing.text.MaskFormatter;
 
 
 
@@ -26,7 +33,8 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
    ControladorCliente controladorCliente = ControladorCliente.getInstance();
    ControladorAluguel controladorAluguel = ControladorAluguel.getInstance();
    Locadora locadora = Locadora.getInstance();
-   
+   MaskFormatter mfdata;
+   Seguro novoseguro = new Seguro();
    
    public DlgCadastroAluguel(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -35,6 +43,11 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
    
     DlgCadastroAluguel(java.awt.Frame parent, boolean modal, ControladorAluguel controladorAluguel) {
         super(parent, modal);
+                try {
+            mfdata = new MaskFormatter("##/##/####");
+        } catch (ParseException ex) {
+            System.out.println("Ocorreu um erro na criação da máscara");
+        }
         initComponents();
     }
 
@@ -49,25 +62,42 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
-        jModelo = new javax.swing.JTextField();
+        jTmodelo = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        jBcadastrar = new javax.swing.JButton();
-        jCPF = new javax.swing.JTextField();
+        jBbuscar = new javax.swing.JButton();
+        jTcpf = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jModelo1 = new javax.swing.JTextField();
+        jTidVeiculo = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        jBcadastrar1 = new javax.swing.JButton();
-        jFormattedTextField1 = new javax.swing.JFormattedTextField();
-        jFormattedTextField2 = new javax.swing.JFormattedTextField();
+        jBcadastrar = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel12 = new javax.swing.JLabel();
+        jFdatafim = new javax.swing.JFormattedTextField(mfdata);
+        jFdataini = new javax.swing.JFormattedTextField(mfdata);
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel7.setText("Modelo:");
+
+        jBbuscar.setText("Buscar");
+        jBbuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBbuscarActionPerformed(evt);
+            }
+        });
+
+        jTcpf.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTcpfActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("CPF do cliente:");
+
+        jLabel9.setText("ID do veículo:");
 
         jBcadastrar.setText("Cadastrar");
         jBcadastrar.addActionListener(new java.awt.event.ActionListener() {
@@ -76,39 +106,25 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
             }
         });
 
-        jCPF.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCPFActionPerformed(evt);
-            }
-        });
-
-        jLabel1.setText("CPF do cliente:");
-
-        jLabel9.setText("ID do veículo:");
-
-        jBcadastrar1.setText("Buscar");
-        jBcadastrar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBcadastrar1ActionPerformed(evt);
-            }
-        });
-
-        jFormattedTextField1.setText("jFormattedTextField1");
-
-        jFormattedTextField2.setText("jFormattedTextField1");
-        jFormattedTextField2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jFormattedTextField2ActionPerformed(evt);
-            }
-        });
-
         jLabel10.setText("De:");
 
         jLabel11.setText("Seguro:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Sem seguro", "Plus" }));
 
         jLabel12.setText("Até:");
+
+        jFdatafim.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFdatafimFocusLost(evt);
+            }
+        });
+
+        jFdataini.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jFdatainiFocusLost(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,67 +132,68 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jBcadastrar)
-                            .addComponent(jBcadastrar1)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(11, 11, 11)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jModelo, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                                .addComponent(jCPF)
-                                .addComponent(jModelo1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                                .addComponent(jFormattedTextField2)
-                                .addComponent(jFormattedTextField1)))))
-                .addContainerGap(32, Short.MAX_VALUE))
+                            .addComponent(jFdataini, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jFdatafim, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jBcadastrar)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTmodelo, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(jTcpf)
+                            .addComponent(jTidVeiculo, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+                        .addComponent(jBbuscar)))
+                .addGap(32, 32, 32))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTcpf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jBcadastrar1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jModelo1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9))
-                        .addGap(43, 43, 43)
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel10))
-                    .addComponent(jFormattedTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTmodelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jFormattedTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
+                    .addComponent(jTidVeiculo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9))
+                .addGap(43, 43, 43)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(jFdataini, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(jFdatafim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel11))
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jBcadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(219, 219, 219))
+                .addGap(234, 234, 234))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -192,7 +209,7 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,23 +217,18 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 510, Short.MAX_VALUE)
-                .addGap(61, 61, 61))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(226, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
+    
+    private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
-        int cpf = Integer.parseInt(jCPF.getText());
-        String modelo = jModelo.getText();
-        
-        //int idVeiculo = Integer.parseInt(jPlaca.getText());
-        
-        //String dataIni = jDataini.getText();
-        //String dataFim = jDatafim.getText();
-
+        int cpf = Integer.parseInt(jTcpf.getText());
+        String modelo = jTmodelo.getText();
         ArrayList<Veiculo>  veiculosEncontrados = locadora.buscarVeiculoPorModelo(modelo);
         
         if (!controladorCliente.existeCliente(cpf)) {
@@ -228,28 +240,66 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
         } else {
         
             if (!veiculosEncontrados.isEmpty()) {
-               locadora.exibirVeiculos(veiculosEncontrados);
+                DlgBuscaVeiculos listaVeiculos = new DlgBuscaVeiculos(null, true, locadora, veiculosEncontrados);
+                listaVeiculos.setVisible(true);
             }else{
                 JOptionPane.showMessageDialog(null, "Veículo não cadastrado");
             }
         }
-      
-        //Aluguel novoAluguel = new Aluguel(dataFim, dataIni, veiculo, cliente, seguro);
-        
+    }//GEN-LAST:event_jBbuscarActionPerformed
 
+    private void jTcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcpfActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTcpfActionPerformed
+
+    private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
+        // TODO add your handling code here:
+        int cpf = Integer.parseInt(jTcpf.getText());
+        Cliente clienteLocador;
+        Veiculo veiculoLocado;
+        int idVeiculo = Integer.parseInt(jTidVeiculo.getText());
+        int idAluguel = controladorAluguel.getNextIdAluguel();
+        Date dataIni;
+        Date dataFim;
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        try {          
+            dataIni = sdf.parse(jFdataini.getText());
+            dataFim = sdf.parse(jFdatafim.getText());
+            clienteLocador = controladorCliente.buscaCliente(cpf);
+            veiculoLocado = locadora.buscaVeiculoPorId(idVeiculo);
+            Aluguel novoAluguel = new Aluguel(idAluguel, dataIni, dataFim, veiculoLocado, clienteLocador, novoseguro);
+            if (controladorAluguel.verificarDisponibilidadeVeiculo(veiculoLocado, dataIni, dataFim)) {
+                controladorAluguel.CriarAluguel(novoAluguel);
+                JOptionPane.showMessageDialog(null, "Veículo reservado");
+            } else {
+                JOptionPane.showMessageDialog(null, "Datas indisponíveis");
+            }
+        } catch (ParseException ex) {
+            // Tratar adequadamente caso ocorra um erro de parsing de data
+            ex.printStackTrace();
+        }
     }//GEN-LAST:event_jBcadastrarActionPerformed
 
-    private void jCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCPFActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jCPFActionPerformed
+    private void jFdatafimFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdatafimFocusLost
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
-    private void jBcadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrar1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jBcadastrar1ActionPerformed
+        try {
+            Date date = sdf.parse(jFdatafim.getText());
+            jFdatafim.setValue(sdf.format(date));
 
-    private void jFormattedTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFormattedTextField2ActionPerformed
+        } catch (ParseException e) {
+            jFdatafim.setFocusLostBehavior(JFormattedTextField.PERSIST);
+            jFdatafim.setText("");
+            jFdatafim.setValue(null);
+        }
+
+    }//GEN-LAST:event_jFdatafimFocusLost
+
+    private void jFdatainiFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFdatainiFocusLost
         // TODO add your handling code here:
-    }//GEN-LAST:event_jFormattedTextField2ActionPerformed
+    }//GEN-LAST:event_jFdatainiFocusLost
 
     /**
      * @param args the command line arguments
@@ -309,12 +359,11 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBbuscar;
     private javax.swing.JButton jBcadastrar;
-    private javax.swing.JButton jBcadastrar1;
-    private javax.swing.JTextField jCPF;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JFormattedTextField jFormattedTextField1;
-    private javax.swing.JFormattedTextField jFormattedTextField2;
+    private javax.swing.JFormattedTextField jFdatafim;
+    private javax.swing.JFormattedTextField jFdataini;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -323,8 +372,9 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
-    private javax.swing.JTextField jModelo;
-    private javax.swing.JTextField jModelo1;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JTextField jTcpf;
+    private javax.swing.JTextField jTidVeiculo;
+    private javax.swing.JTextField jTmodelo;
     // End of variables declaration//GEN-END:variables
 }

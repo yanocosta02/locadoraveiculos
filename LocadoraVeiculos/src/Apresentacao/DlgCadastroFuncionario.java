@@ -69,7 +69,7 @@ public class DlgCadastroFuncionario extends javax.swing.JDialog {
             }
         });
 
-        jBvoltar.setText("Voltar ao Login");
+        jBvoltar.setText("Voltar");
         jBvoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBvoltarActionPerformed(evt);

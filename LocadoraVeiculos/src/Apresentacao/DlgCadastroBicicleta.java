@@ -189,7 +189,7 @@ public class DlgCadastroBicicleta extends javax.swing.JDialog {
             }
             String tipoBicicleta = jTtipobici.getText();
             Bicicleta novaBicicleta = new Bicicleta(idVeiculo, modelo, marca, cor, valorDia, tipoBicicleta); 
-            if (!locadora.buscaVeiculo(idVeiculo)) {
+            if (!locadora.existeVeiculo(idVeiculo)) {
                 locadora.cadastrarVeiculo(novaBicicleta);
                 JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!");
             } else {

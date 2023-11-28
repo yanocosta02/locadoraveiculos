@@ -68,14 +68,14 @@ public class DlgCadastroCliente extends javax.swing.JDialog {
             }
         });
 
-        jBcadastrarCli.setText("Cadastrar Funcionário");
+        jBcadastrarCli.setText("Cadastrar Cliente");
         jBcadastrarCli.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBcadastrarCliActionPerformed(evt);
             }
         });
 
-        jBvoltarInicio.setText("Voltar ao Login");
+        jBvoltarInicio.setText("Voltar");
         jBvoltarInicio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBvoltarInicioActionPerformed(evt);

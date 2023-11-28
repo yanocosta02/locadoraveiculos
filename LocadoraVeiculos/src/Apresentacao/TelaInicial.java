@@ -7,6 +7,8 @@ package Apresentacao;
 import Controladores.ControladorCliente;
 import Controladores.Locadora;
 import Controladores.ControladorAluguel;
+import Modelo.Aluguel;
+import java.util.ArrayList;
 
 /**
  *
@@ -24,9 +26,21 @@ public class TelaInicial extends javax.swing.JFrame {
 
     public TelaInicial() {
         initComponents();
-        
+        exibeInformacoes();
     }
-
+    private void exibeInformacoes() {
+        ArrayList<Aluguel> alugueis = controladorAluguel.listarAluguel();
+        // Defina o número de linhas na tabela com base na quantidade de automoveis
+        
+        for (int i = 0; i < alugueis.size() && alugueis.get(i) != null; i++){
+            jTalugueis.setValueAt(alugueis.get(i).getIdAluguel(), i, 0);
+            jTalugueis.setValueAt(alugueis.get(i).getDataIni(), i, 1);
+            jTalugueis.setValueAt(alugueis.get(i).getDataFim(), i, 2);
+            jTalugueis.setValueAt(alugueis.get(i).getVeiculo().getIdVeiculo(), i, 3);
+            jTalugueis.setValueAt(alugueis.get(i).getCliente().getCpf(), i, 4);
+            jTalugueis.setValueAt(alugueis.get(i).getSeguro().getNomeSeguro(), i, 5);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -37,6 +51,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTalugueis = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMareafunc = new javax.swing.JMenu();
         jMcadfunc = new javax.swing.JMenuItem();
@@ -58,15 +74,61 @@ public class TelaInicial extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jTalugueis.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
+            },
+            new String [] {
+                "idAluguel", "DataIni", "DataFim", "idVeiculo", "idCliente", "TipoSeguro"
+            }
+        ));
+        jTalugueis.setToolTipText("");
+        jScrollPane3.setViewportView(jTalugueis);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 476, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 798, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 424, Short.MAX_VALUE)
+            .addGap(0, 471, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 445, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         jMenuBar1.setBackground(new java.awt.Color(120, 120, 120));
@@ -128,6 +190,11 @@ public class TelaInicial extends javax.swing.JFrame {
         jMalugueis.add(jMnovoaluguel);
 
         jMlistaralugueis.setText("Listar Aluguéis");
+        jMlistaralugueis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMlistaralugueisActionPerformed(evt);
+            }
+        });
         jMalugueis.add(jMlistaralugueis);
 
         jMpagamento.setText("Pagamento");
@@ -269,6 +336,12 @@ public class TelaInicial extends javax.swing.JFrame {
         dlg.setVisible(true);  
     }//GEN-LAST:event_jMnovoaluguelActionPerformed
 
+    private void jMlistaralugueisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMlistaralugueisActionPerformed
+        // TODO add your handling code here:
+        DlgMostraAlugueis mostraAlugueis = new DlgMostraAlugueis(null, true, controladorAluguel);
+        mostraAlugueis.setVisible(true);
+    }//GEN-LAST:event_jMlistaralugueisActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -321,6 +394,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu jMsair;
     private javax.swing.JMenu jMveiculos;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTalugueis;
     private javax.swing.JMenuItem jmiBici;
     private javax.swing.JMenuItem jmiCadastroAuto;
     private javax.swing.JMenuItem jmiListarAuto;

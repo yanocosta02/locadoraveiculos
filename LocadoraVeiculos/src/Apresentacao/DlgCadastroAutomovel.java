@@ -209,7 +209,7 @@ public class DlgCadastroAutomovel extends javax.swing.JDialog {
             
             
             Automovel novoAutomovel = new Automovel(idVeiculo, modelo, cor, marca, valorDia, placa, anoFabricacao); 
-            if (!locadora.buscaVeiculo(idVeiculo)) {
+            if (!locadora.existeVeiculo(idVeiculo)) {
                 locadora.cadastrarVeiculo(novoAutomovel);
                 JOptionPane.showMessageDialog(null, "Veículo cadastrado com sucesso!");
             } else {

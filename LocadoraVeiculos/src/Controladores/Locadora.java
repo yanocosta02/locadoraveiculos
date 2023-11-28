@@ -75,7 +75,16 @@ public class Locadora {
         }
         return null; // Se não encontrar veículo com o modelo especificado
     }
-    public boolean buscaVeiculo(int id) {
+
+    public Veiculo buscaVeiculoPorId(int idVeiculo) {
+        for (Veiculo veiculo : veiculos) {
+            if (veiculo.getIdVeiculo() == idVeiculo) {
+                return veiculo;
+            }
+        }
+        return null; // Se não encontrar veículo com o modelo especificado
+    }
+    public boolean existeVeiculo(int id) {
     for (Veiculo veiculo : veiculos) {
         if (veiculo.getIdVeiculo() == id) {
             return true; // Já existe um veículo com este ID cadastrado
@@ -87,6 +96,7 @@ public class Locadora {
     public ArrayList <Veiculo> listarVeiculos() {
         return veiculos;
     }    
+    
     public void criarSeguro(){
         novoseguro.setNomeSeguro("plus");
         novoseguro.setNomeSeguradora("locadora");

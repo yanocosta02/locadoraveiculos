@@ -8,11 +8,20 @@ import java.util.Date;
 
 
 public class Aluguel {
+    private int idAluguel;
     private Date dataIni;
     private Date dataFim;
     private Seguro seguro;
     private Veiculo veiculo;
     private Cliente cliente;
+
+    public int getIdAluguel() {
+        return idAluguel;
+    }
+
+    public void setIdAluguel(int idAluguel) {
+        this.idAluguel = idAluguel;
+    }
 
     public Date getDataIni() {
         return dataIni;
@@ -30,9 +39,10 @@ public class Aluguel {
         this.dataFim = dataFim;
     }
 
-    public void Aluguel(Date dataFim, Date dataIni, Veiculo veiculo, Cliente cliente, Seguro seguro) {
-        this.dataFim = dataFim;
+    public Aluguel(int idAluguel, Date dataIni, Date dataFim, Veiculo veiculo, Cliente cliente, Seguro seguro) {
+        this.idAluguel = idAluguel;
         this.dataIni = dataIni;
+        this.dataFim = dataFim;
         this.seguro = seguro;
         this.veiculo = veiculo;
         this.cliente = cliente;
@@ -46,4 +56,21 @@ public class Aluguel {
     public void adicionarVeiculo(Veiculo veiculo) {
         this.veiculo = veiculo;
     }
+    
+    public void adicionarCliente(Veiculo veiculo) {
+        this.veiculo = veiculo;
+    }
+
+    public Seguro getSeguro() {
+        return seguro;
+    }
+
+    public Veiculo getVeiculo() {
+        return veiculo;
+    }
+
+    public Cliente getCliente() {
+        return cliente;
+    }
+    
 }
