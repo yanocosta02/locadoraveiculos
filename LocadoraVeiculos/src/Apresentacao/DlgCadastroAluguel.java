@@ -232,7 +232,7 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
     
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
-        int cpf = Integer.parseInt(jTcpf.getText());
+        long cpf = Long.parseLong(jTcpf.getText());
         String modelo = jTmodelo.getText();
         ArrayList<Veiculo>  veiculosEncontrados = locadora.buscarVeiculoPorModelo(modelo);
         
@@ -259,13 +259,13 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
 
     private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
         // TODO add your handling code here:
-        int cpf;
+        long cpf;
         int idVeiculo;
         Date dataIni;
         Date dataFim;
 
         try {          
-            cpf = Integer.parseInt(jTcpf.getText());
+            cpf = Long.parseLong(jTcpf.getText());
             idVeiculo = Integer.parseInt(jTidVeiculo.getText());
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             dataIni = sdf.parse(jFdataini.getText());
@@ -294,18 +294,7 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
 
             if (controladorAluguel.verificarDisponibilidadeVeiculo(veiculoLocado, dataIni, dataFim)) {
                 controladorAluguel.CriarAluguel(novoAluguel);
-                TelaInicial telaInicial = new TelaInicial();
-                telaInicial.setVisible(true);
                 this.dispose();
-
-                // Fechar a Tela Inicial antiga desatualizada
-                java.awt.Window win[] = java.awt.Window.getWindows(); // Obtém todas as janelas abertas
-                for (java.awt.Window window : win) {
-                    if (window instanceof TelaInicial) { // Verifica se é uma instância de TelaInicial
-                        window.dispose(); // Fecha a primeira TelaInicial encontrada
-                        break; // Interrompe o loop após fechar a primeira instância
-                    }
-                }
                 JOptionPane.showMessageDialog(null, "Veículo reservado");
             } else {
                 JOptionPane.showMessageDialog(null, "Datas indisponíveis");

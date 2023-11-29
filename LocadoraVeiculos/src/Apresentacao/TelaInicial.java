@@ -30,7 +30,7 @@ public class TelaInicial extends javax.swing.JFrame {
         exibeInformacoes();
         
     }
-    private void exibeInformacoes() {
+    public void exibeInformacoes() {
         DefaultTableModel model = (DefaultTableModel) jTalugueis.getModel();
         model.setRowCount(0); // Limpa a tabela para inserir os novos dados
         ArrayList<Aluguel> alugueis = controladorAluguel.listarAluguel();
@@ -62,6 +62,7 @@ public class TelaInicial extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         jTalugueis = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
+        jBatualizar = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMareafunc = new javax.swing.JMenu();
         jMcadfunc = new javax.swing.JMenuItem();
@@ -123,6 +124,13 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setText("GERENCIADOR DE ALUGUÉIS");
 
+        jBatualizar.setText("Atualizar");
+        jBatualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBatualizarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -130,7 +138,9 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel1)
-                .addContainerGap(636, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 545, Short.MAX_VALUE)
+                .addComponent(jBatualizar)
+                .addContainerGap())
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addContainerGap()
@@ -140,7 +150,9 @@ public class TelaInicial extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBatualizar))
                 .addGap(0, 468, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
@@ -365,6 +377,11 @@ public class TelaInicial extends javax.swing.JFrame {
         cadastropag.setVisible(true);     
     }//GEN-LAST:event_jMpagamentoActionPerformed
 
+    private void jBatualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBatualizarActionPerformed
+        // TODO add your handling code here:
+        exibeInformacoes(); // Chama o método para atualizar os dados na tabela
+    }//GEN-LAST:event_jBatualizarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -401,6 +418,7 @@ public class TelaInicial extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jBatualizar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMalugueis;
     private javax.swing.JMenu jMareafunc;

@@ -4,9 +4,7 @@
  */
 package Controladores;
 
-import Modelo.Aluguel;
 import java.util.ArrayList;
-import Modelo.Bicicleta;
 import Modelo.Funcionario;
 import Modelo.Veiculo;
 import Modelo.Seguro;

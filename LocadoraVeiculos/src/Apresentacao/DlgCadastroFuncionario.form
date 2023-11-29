@@ -76,7 +76,6 @@
                           </Group>
                       </Group>
                       <Component id="jBcadastrarFunc" alignment="1" min="-2" max="-2" attributes="0"/>
-                      <Component id="jBvoltar" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
@@ -102,9 +101,7 @@
                   </Group>
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Component id="jBcadastrarFunc" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="jBvoltar" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="195" max="32767" attributes="0"/>
+                  <EmptySpace pref="227" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -137,14 +134,6 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBcadastrarFuncActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="jBvoltar">
-          <Properties>
-            <Property name="text" type="java.lang.String" value="Voltar"/>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBvoltarActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

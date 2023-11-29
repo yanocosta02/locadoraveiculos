@@ -7,12 +7,7 @@ package Controladores;
 import java.util.ArrayList;
 import Modelo.Aluguel;
 import Modelo.Cliente;
-import Modelo.Seguro;
 import Modelo.Veiculo;
-import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.Period;
-import java.time.format.DateTimeFormatter;
 import java.util.Date;
 
 /**
@@ -76,7 +71,7 @@ public boolean verificarDisponibilidadeVeiculo(Veiculo veiculo, Date dataInicio,
         return saida;
     }
     
-    public ArrayList<Aluguel> buscaAluguel(int cpf) {
+    public ArrayList<Aluguel> buscaAluguel(long cpf) {
         ArrayList <Aluguel> alugueisEncontrados = new ArrayList<>();
         Cliente cliente = controladorCliente.buscaCliente(cpf);
         for (Aluguel aluguel : listaAlugueis) {

@@ -132,7 +132,7 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
     
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
-        int cpf = Integer.parseInt(jTcpf.getText());
+        long cpf = Long.parseLong(jTcpf.getText());
         ArrayList<Aluguel>  alugueisEncontrados = controladorAluguel.buscaAluguel(cpf);
         
         if (!controladorCliente.existeCliente(cpf)) {
