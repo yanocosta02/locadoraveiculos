@@ -35,10 +35,10 @@ public class DlgConfirmaPag extends javax.swing.JDialog {
     }
     private void preencherCampos() {
         int idAluguel= aluguel.getIdAluguel();
-        double valor = controladorAluguel.calculaValor(idAluguel);
-        double multa = controladorAluguel.calculaMulta(idAluguel, valor);
-        double seguro = controladorAluguel.calculaSeguro(idAluguel);
-        double total = controladorAluguel.calculaTotal(valor, multa, seguro);
+        double valor = aluguel.calculaValor(idAluguel);
+        double multa = aluguel.calculaMulta(idAluguel, valor);
+        double seguro = aluguel.calculaSeguro(idAluguel);
+        double total = aluguel.calculaTotal(valor, multa, seguro);
         Pagamento pagFinalizado;      
         jLid.setText(String.valueOf(aluguel.getIdAluguel()));
         jLvalor.setText(String.valueOf(valor));
@@ -112,14 +112,14 @@ public class DlgConfirmaPag extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createSequentialGroup()
@@ -175,7 +175,7 @@ public class DlgConfirmaPag extends javax.swing.JDialog {
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Efetuar Pagamento");
+        jLabel3.setText("Efetue o pagamento");
         jLabel3.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -192,9 +192,9 @@ public class DlgConfirmaPag extends javax.swing.JDialog {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(34, 34, 34)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(61, 61, 61))
         );
@@ -205,26 +205,24 @@ public class DlgConfirmaPag extends javax.swing.JDialog {
     private void jBfinalizarPagActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBfinalizarPagActionPerformed
         // TODO add your handling code here:
         Pagamento pagamento = aluguel.getPag();
-        if (pagamento.getStatus() == null) {
-            Date data = new Date();
-            pagamento.processarPagamento(data, "Pago");
-
-            TelaInicial telaInicial = new TelaInicial();
-            telaInicial.setVisible(true);
-            this.dispose(); 
-
-            // Fechar a Tela Inicial antiga desatualizada
-            java.awt.Window win[] = java.awt.Window.getWindows(); // Obtém todas as janelas abertas
-            for (int i = 0; i < 5; i++) {
-                if (win[i] instanceof TelaInicial) { // Verifica se é uma instância de TelaInicial
-                    win[i].dispose(); // Fecha a TelaInicial
-                }
+        Date data = new Date();
+        pagamento.processarPagamento(data, "Pago");
+        TelaInicial telaInicial = new TelaInicial();
+        telaInicial.setVisible(true);
+        this.dispose(); 
+        // Fechar a Tela Inicial antiga desatualizada
+        java.awt.Window win[] = java.awt.Window.getWindows(); // Obtém todas as janelas abertas
+        for (int i = 0; i < 5; i++) {
+            if (win[i] instanceof TelaInicial) { // Verifica se é uma instância de TelaInicial
+                win[i].dispose(); // Fecha a TelaInicial
             }
+        }
+        
+        
+        JOptionPane.showMessageDialog(null, "Pagamento do aluguel ID " + aluguel.getIdAluguel() + " foi finalizado!");
 
-            JOptionPane.showMessageDialog(null, "Pagamento do aluguel ID " + aluguel.getIdAluguel() + " foi finalizado!");
-        } else {
-            JOptionPane.showMessageDialog(null, "Este aluguel já foi pago anteriormente!");
-        }      
+       
+
     }//GEN-LAST:event_jBfinalizarPagActionPerformed
 
     /**

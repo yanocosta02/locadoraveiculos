@@ -60,8 +60,7 @@ public class DlgBuscaAlugueis extends javax.swing.JDialog {
                 aluguel.getDataFim(),
                 aluguel.getVeiculo().getIdVeiculo(),
                 aluguel.getCliente().getCpf(),
-                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica",
-                (aluguel.getPag() != null) ? aluguel.getPag().getStatus() : "Pendente"
+                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica"
             };
             model.addRow(rowData); // Adiciona uma nova linha com os dados do aluguel
         }
