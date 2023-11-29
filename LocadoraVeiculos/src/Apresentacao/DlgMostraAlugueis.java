@@ -8,6 +8,7 @@ import Controladores.ControladorAluguel;
 import Modelo.Aluguel;
 import Modelo.Seguro;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -34,18 +35,20 @@ public class DlgMostraAlugueis extends javax.swing.JDialog {
         ArrayList<Aluguel> alugueis = c.listarAluguel();
         // Defina o número de linhas na tabela com base na quantidade de automoveis
         
-        for (int i = 0; i < alugueis.size() && alugueis.get(i) != null; i++){
-            jTalugueis.setValueAt(alugueis.get(i).getIdAluguel(), i, 0);
-            jTalugueis.setValueAt(alugueis.get(i).getDataIni(), i, 1);
-            jTalugueis.setValueAt(alugueis.get(i).getDataFim(), i, 2);
-            jTalugueis.setValueAt(alugueis.get(i).getVeiculo().getIdVeiculo(), i, 3);
-            jTalugueis.setValueAt(alugueis.get(i).getCliente().getCpf(), i, 4);
-            Seguro seguro = alugueis.get(i).getSeguro();
-            if (seguro != null) {
-                jTalugueis.setValueAt(seguro.getNomeSeguro(), i, 5);
-            } else {
-                jTalugueis.setValueAt("Não se aplica", i, 5);
-            }
+        DefaultTableModel model = (DefaultTableModel) jTalugueis.getModel();
+        model.setRowCount(0); // Limpa a tabela para inserir os novos dados
+        
+        for (Aluguel aluguel : alugueis) {
+            Object[] rowData = {
+                aluguel.getIdAluguel(),
+                aluguel.getDataIni(),
+                aluguel.getDataFim(),
+                aluguel.getVeiculo().getIdVeiculo(),
+                aluguel.getCliente().getCpf(),
+                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica",
+                (aluguel.getPag() != null) ? aluguel.getPag().getStatus() : "Pendente"
+            };
+            model.addRow(rowData); // Adiciona uma nova linha com os dados do aluguel
         }
     }
     /**

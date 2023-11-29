@@ -113,7 +113,7 @@ public boolean verificarDisponibilidadeVeiculo(Veiculo veiculo, Date dataInicio,
         Period periodo = DataIni.until(DataFim); // calcula a diferença
         int dias = periodo.getDays();
         Veiculo veiculo = aluguel.getVeiculo();
-        double valor = dias * veiculo.getValorDia();
+        double valor = (1 + dias) * veiculo.getValorDia();
         return valor;
     }
     
