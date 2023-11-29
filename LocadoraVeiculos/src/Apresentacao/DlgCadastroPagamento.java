@@ -8,15 +8,8 @@ import Controladores.ControladorCliente;
 import Controladores.ControladorAluguel;
 import javax.swing.JOptionPane;
 import Modelo.Aluguel;
-import Modelo.Cliente;
 import Modelo.Seguro;
-import Modelo.Veiculo;
-import Modelo.Pagamento;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
-import javax.swing.JFormattedTextField;
 import javax.swing.text.MaskFormatter;
 
 
@@ -44,11 +37,6 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
    
     DlgCadastroPagamento(java.awt.Frame parent, boolean modal, ControladorAluguel controladorAluguel) {
         super(parent, modal);
-                try {
-            mfdata = new MaskFormatter("##/##/####");
-        } catch (ParseException ex) {
-            System.out.println("Ocorreu um erro na criação da máscara");
-        }
         initComponents();
     }
 
@@ -66,11 +54,6 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
         jBbuscar = new javax.swing.JButton();
         jTcpf = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
-        jTidAluguel = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        jBcadastrar = new javax.swing.JButton();
-        jLabel10 = new javax.swing.JLabel();
-        jForma = new javax.swing.JFormattedTextField(mfdata);
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -90,23 +73,6 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
 
         jLabel1.setText("CPF do cliente:");
 
-        jLabel9.setText("ID do aluguel:");
-
-        jBcadastrar.setText("Exibir Total");
-        jBcadastrar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBcadastrarActionPerformed(evt);
-            }
-        });
-
-        jLabel10.setText("Forma:");
-
-        jForma.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                jFormaFocusLost(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -114,21 +80,12 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
-                            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jBcadastrar)
-                            .addComponent(jBbuscar)
-                            .addComponent(jTcpf, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTidAluguel, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-                            .addComponent(jForma, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(32, 32, 32))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jBbuscar)
+                    .addComponent(jTcpf, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -139,23 +96,13 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jBbuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(9, 9, 9)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTidAluguel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(43, 43, 43)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jForma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(100, 100, 100)
                 .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(jBcadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(335, 335, 335))
+                .addGap(378, 378, 378))
         );
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setText("Cadastrar Pagamento");
+        jLabel3.setText("Buscar Pagamentos");
         jLabel3.setToolTipText("");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -175,8 +122,8 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
                 .addGap(34, 34, 34)
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -186,19 +133,16 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
     private void jBbuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBbuscarActionPerformed
         // TODO add your handling code here:
         int cpf = Integer.parseInt(jTcpf.getText());
-        String forma = jForma.getText();
         ArrayList<Aluguel>  alugueisEncontrados = controladorAluguel.buscaAluguel(cpf);
         
         if (!controladorCliente.existeCliente(cpf)) {
             JOptionPane.showMessageDialog(null, "Cliente não existe!");
-            //DlgCadastroCliente telaCadastroCli = new DlgCadastroCliente(null, true, controladorCliente);
-            //telaCadastroCli.setVisible(true);
             
         } else {
             if (!alugueisEncontrados.isEmpty()) {
+                this.dispose();                 
                 DlgBuscaAlugueis mostraAlugueis = new DlgBuscaAlugueis(null, true, controladorAluguel, alugueisEncontrados);
                 mostraAlugueis.setVisible(true);                                       
-                //JOptionPane.showMessageDialog(null, "Encontrou");
             }else{
                 JOptionPane.showMessageDialog(null, "Cliente não possui nenhuma reserva.");
             }
@@ -208,31 +152,6 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
     private void jTcpfActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTcpfActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTcpfActionPerformed
-
-    private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
-        // TODO add your handling code here:
-        int cpf = Integer.parseInt(jTcpf.getText());
-        Cliente clienteLocador;
-        Veiculo veiculoLocado;
-        int idAluguel= Integer.parseInt(jTidAluguel.getText());
-        String forma = jForma.getText();
-        
-        double valor = controladorAluguel.calculaValor(idAluguel);
-        double multa = controladorAluguel.calculaMulta(idAluguel, valor);
-        double seguro = controladorAluguel.calculaSeguro(idAluguel);
-        double total = controladorAluguel.calculaTotal(valor, multa, seguro);
-        
-        Pagamento novoPagamento = new Pagamento(forma, valor, total, multa, seguro);
-        
-        JOptionPane.showMessageDialog(null, "");
-        
-        
-        //adicionarPagamento(Pagamento pag)
-    }//GEN-LAST:event_jBcadastrarActionPerformed
-
-    private void jFormaFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jFormaFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jFormaFocusLost
 
     /**
      * @param args the command line arguments
@@ -309,15 +228,10 @@ public class DlgCadastroPagamento extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBbuscar;
-    private javax.swing.JButton jBcadastrar;
-    private javax.swing.JFormattedTextField jForma;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField jTcpf;
-    private javax.swing.JTextField jTidAluguel;
     // End of variables declaration//GEN-END:variables
 }

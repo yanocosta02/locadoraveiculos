@@ -15,16 +15,14 @@ public class Pagamento {
     private double valor;
     private double valorMulta;
     private double total;
-    private double seguro;
     private Date data;
+    private String status;
 
-    public Pagamento(String forma, double valor, double total, double multa, double seguro) {
+    public Pagamento(String forma, double valor, double total, double multa) {
         this.forma = forma;
         this.valor = valor;
         this.total = total;
         this.valorMulta = multa; // Inicialmente, não há multa
-        this.data = new Date(); // Data atual como padrão
-        this.seguro = seguro;
     }
     
     public void processarPagamento(String forma, Date data) {
@@ -74,4 +72,26 @@ public class Pagamento {
     public void setData(Date data) {
         this.data = data;
     }   
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    
+    public void processarPagamento(Date data, String status) {
+        this.data = data; // Atualiza a data para a data atual
+        this.status = status; // Define o status como Pago
+    }
 }

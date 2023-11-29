@@ -136,7 +136,6 @@ public class DlgBuscaVeiculos extends javax.swing.JDialog {
             }
         ));
         jTautomoveis2.setToolTipText("");
-        jTautomoveis2.setPreferredSize(new java.awt.Dimension(450, 416));
         jScrollPane3.setViewportView(jTautomoveis2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

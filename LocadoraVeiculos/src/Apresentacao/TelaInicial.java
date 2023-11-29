@@ -42,7 +42,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 aluguel.getDataFim(),
                 aluguel.getVeiculo().getIdVeiculo(),
                 aluguel.getCliente().getCpf(),
-                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica"
+                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica",
+                (aluguel.getPag() != null) ? aluguel.getPag().getStatus() : "Pendente"
             };
             model.addRow(rowData); // Adiciona uma nova linha com os dados do aluguel
         }
@@ -113,7 +114,7 @@ public class TelaInicial extends javax.swing.JFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "idAluguel", "DataIni", "DataFim", "idVeiculo", "idCliente", "TipoSeguro", "StatusPag"
+                "idAluguel", "DataIni", "DataFim", "idVeiculo", "cpfCliente", "TipoSeguro", "StatusPag"
             }
         ));
         jTalugueis.setToolTipText("");

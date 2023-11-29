@@ -151,28 +151,20 @@ public class TelaLogin extends javax.swing.JFrame {
     }//GEN-LAST:event_jBcadastrarActionPerformed
 
     private void jBentrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBentrarActionPerformed
-        // TODO add your handling code here:
         // Lógica para o botão de login
-        TelaInicial telaInicial = new TelaInicial(); // Instancia a tela inicial
-        telaInicial.setVisible(true); // Mostra a tela inicial
-        this.dispose(); // Fecha a tela de login após o login bem-sucedido
-        /*
-        
         String usuario = jTusuario.getText();
         String senha = jPsenha.getText();
-         
+
         Funcionario funcionarioLogado = locadora.realizarLogin(usuario, senha);
-        funcionarioLogado.acessarConta();
-        
-        
+
         if (funcionarioLogado != null) {
             JOptionPane.showMessageDialog(null, "Login bem-sucedido!");
-            funcionarioLogado.acessarConta();
+            TelaInicial telaInicial = new TelaInicial();
+            telaInicial.setVisible(true);
             this.dispose(); // Fecha a tela de login após o login bem-sucedido
         } else {
             JOptionPane.showMessageDialog(null, "Usuário ou senha inválidos!");
-        } 
-        */
+        }  
     }//GEN-LAST:event_jBentrarActionPerformed
 
     /**

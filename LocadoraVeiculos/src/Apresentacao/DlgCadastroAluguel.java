@@ -214,7 +214,7 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 296, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(64, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -223,7 +223,7 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 345, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(226, Short.MAX_VALUE))
+                .addContainerGap(58, Short.MAX_VALUE))
         );
 
         pack();
@@ -259,52 +259,62 @@ public class DlgCadastroAluguel extends javax.swing.JDialog {
 
     private void jBcadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBcadastrarActionPerformed
         // TODO add your handling code here:
-        int cpf = Integer.parseInt(jTcpf.getText());
-        Cliente clienteLocador;
-        Veiculo veiculoLocado;
-        int idVeiculo = Integer.parseInt(jTidVeiculo.getText());
-        int idAluguel = controladorAluguel.getNextIdAluguel();
+        int cpf;
+        int idVeiculo;
         Date dataIni;
         Date dataFim;
-        Seguro seguro = locadora.getSeguro();
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
         try {          
+            cpf = Integer.parseInt(jTcpf.getText());
+            idVeiculo = Integer.parseInt(jTidVeiculo.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             dataIni = sdf.parse(jFdataini.getText());
             dataFim = sdf.parse(jFdatafim.getText());
-            clienteLocador = controladorCliente.buscaCliente(cpf);
-            veiculoLocado = locadora.buscaVeiculoPorId(idVeiculo);
+
+            Cliente clienteLocador = controladorCliente.buscaCliente(cpf);
+            Veiculo veiculoLocado = locadora.buscaVeiculoPorId(idVeiculo);
+
+            if (clienteLocador == null) {
+                JOptionPane.showMessageDialog(null, "Cliente não encontrado");
+                return;
+            }
+
+            if (veiculoLocado == null) {
+                JOptionPane.showMessageDialog(null, "Veículo não encontrado");
+                return;
+            }
+
+            int idAluguel = controladorAluguel.getNextIdAluguel();
             Aluguel novoAluguel = new Aluguel(idAluguel, dataIni, dataFim, veiculoLocado, clienteLocador);
-        // Verifica se o radio button de contratação de seguro está selecionado
-        if (jRcontratarSeguro.isSelected()) {
-            novoAluguel.adicionarSeguro(seguro);
-            
-        }
+
+            Seguro seguro = locadora.getSeguro();
+            if (jRcontratarSeguro.isSelected()) {
+                novoAluguel.adicionarSeguro(seguro);           
+            }
+
             if (controladorAluguel.verificarDisponibilidadeVeiculo(veiculoLocado, dataIni, dataFim)) {
                 controladorAluguel.CriarAluguel(novoAluguel);
+                TelaInicial telaInicial = new TelaInicial();
+                telaInicial.setVisible(true);
+                this.dispose();
+
+                // Fechar a Tela Inicial antiga desatualizada
+                java.awt.Window win[] = java.awt.Window.getWindows(); // Obtém todas as janelas abertas
+                for (java.awt.Window window : win) {
+                    if (window instanceof TelaInicial) { // Verifica se é uma instância de TelaInicial
+                        window.dispose(); // Fecha a primeira TelaInicial encontrada
+                        break; // Interrompe o loop após fechar a primeira instância
+                    }
+                }
                 JOptionPane.showMessageDialog(null, "Veículo reservado");
             } else {
                 JOptionPane.showMessageDialog(null, "Datas indisponíveis");
             }
         } catch (ParseException ex) {
-            // Tratar adequadamente caso ocorra um erro de parsing de data
             ex.printStackTrace();
-        }
-        
-        
-        TelaInicial telaInicial = new TelaInicial(); // Abre a nova janela atualizada e depois fecha a desatualizada
-        telaInicial.setVisible(true); // Mostra a tela inicial
-        this.dispose(); 
-        
-        // Fechar a Tela Inicial antiga desatualizada
-        java.awt.Window win[] = java.awt.Window.getWindows(); // Obtém todas as janelas abertas
-        for (int i = 0; i < 2; i++) {
-            if (win[i] instanceof TelaInicial) { // Verifica se é uma instância de TelaInicial
-                win[i].dispose(); // Fecha a TelaInicial
-            }
-        }        
-
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(null, "Formato de entrada inválido para CPF ou ID de veículo");
+        } 
 
     }//GEN-LAST:event_jBcadastrarActionPerformed
 

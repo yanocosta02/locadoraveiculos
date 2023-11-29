@@ -6,7 +6,10 @@ package Apresentacao;
 
 import Controladores.ControladorAluguel;
 import Modelo.Aluguel;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -14,7 +17,6 @@ import java.util.ArrayList;
  */
 public class DlgBuscaAlugueis extends javax.swing.JDialog {
 
-    private ControladorAluguel c;
     /**
      * Creates new form DlgMostraAlugueis
      */
@@ -24,8 +26,23 @@ public class DlgBuscaAlugueis extends javax.swing.JDialog {
     }
     public DlgBuscaAlugueis(java.awt.Frame parent, boolean modal, ControladorAluguel c, ArrayList <Aluguel> alugueisEncontrados) {
         super(parent, modal);
-        this.c = c;
         initComponents();
+        DlgBuscaAlugueis self = this; // Referência para a instância atual da janela
+        jTalugueis.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() == 1) { // Verifica o clique duplo
+                    int selectedRow = jTalugueis.getSelectedRow();
+                    if (selectedRow != -1) { // Garante que uma linha foi selecionada
+                        Aluguel aluguelSelecionado = alugueisEncontrados.get(selectedRow);
+                        self.dispose();
+                        // Faça algo com o aluguel selecionado, por exemplo:
+                        // Abra uma nova janela exibindo os detalhes do aluguel
+                        DlgConfirmaPag confirmacaoPag = new DlgConfirmaPag(null, true, aluguelSelecionado);
+                        confirmacaoPag.setVisible(true);
+                    }
+                }
+            }
+        });
         exibeInformacoes(alugueisEncontrados);
     }
     
@@ -33,13 +50,19 @@ public class DlgBuscaAlugueis extends javax.swing.JDialog {
         ArrayList<Aluguel> alugueis = alugueisEncontrados;
         // Defina o número de linhas na tabela com base na quantidade de automoveis
         
-        for (int i = 0; i < alugueis.size() && alugueis.get(i) != null; i++){
-            jTalugueis.setValueAt(alugueis.get(i).getIdAluguel(), i, 0);
-            jTalugueis.setValueAt(alugueis.get(i).getDataIni(), i, 1);
-            jTalugueis.setValueAt(alugueis.get(i).getDataFim(), i, 2);
-            jTalugueis.setValueAt(alugueis.get(i).getVeiculo().getIdVeiculo(), i, 3);
-            jTalugueis.setValueAt(alugueis.get(i).getCliente().getCpf(), i, 4);
-            //jTalugueis.setValueAt(alugueis.get(i).getSeguro().getNomeSeguro(), i, 5);
+        DefaultTableModel model = (DefaultTableModel) jTalugueis.getModel();
+        model.setRowCount(0); // Limpa a tabela para inserir os novos dados
+        
+        for (Aluguel aluguel : alugueis) {
+            Object[] rowData = {
+                aluguel.getIdAluguel(),
+                aluguel.getDataIni(),
+                aluguel.getDataFim(),
+                aluguel.getVeiculo().getIdVeiculo(),
+                aluguel.getCliente().getCpf(),
+                (aluguel.getSeguro() != null) ? aluguel.getSeguro().getNomeSeguro() : "Não se aplica"
+            };
+            model.addRow(rowData); // Adiciona uma nova linha com os dados do aluguel
         }
     }
     /**
@@ -59,42 +82,42 @@ public class DlgBuscaAlugueis extends javax.swing.JDialog {
 
         jTalugueis.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "idAluguel", "DataIni", "DataFim", "idVeiculo", "idCliente", "TipoSeguro"
+                "idAluguel", "DataIni", "DataFim", "idVeiculo", "idCliente", "TipoSeguro", "StatusPag"
             }
         ));
         jTalugueis.setToolTipText("");
         jScrollPane3.setViewportView(jTalugueis);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel1.setText("Aluguéis Registrados");
+        jLabel1.setText("Clique no aluguel a ser feito o pagamento!");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

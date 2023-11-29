@@ -193,13 +193,13 @@ public class DlgCadastroCliente extends javax.swing.JDialog {
         String endereco = jTenderecoCli.getText();
         String email = jTemailCli.getText();
 
-        int cpf = 0;
-        int telefone = 0;
+        long cpf = 0;
+        long telefone = 0;
 
         try {
             String cpfText = jTcpfCli.getText();
             if (!cpfText.isEmpty()) {
-                cpf = Integer.parseInt(cpfText);
+                cpf = Long.parseLong(cpfText);
             } else {
                 throw new NumberFormatException();
             }
@@ -211,7 +211,7 @@ public class DlgCadastroCliente extends javax.swing.JDialog {
         try {
             String telText = jTtelefoneCli.getText();
             if (!telText.isEmpty()) {
-                telefone = Integer.parseInt(telText);
+                telefone = Long.parseLong(telText);
             } else {
                 throw new NumberFormatException();
             }

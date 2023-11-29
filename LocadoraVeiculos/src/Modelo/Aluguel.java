@@ -64,5 +64,17 @@ public class Aluguel {
     public Cliente getCliente() {
         return cliente;
     }
-    
+    public void criarPagamento(String forma, double valor, double multa, double total) {
+        Pagamento pagamento = new Pagamento(forma, valor, multa, total); 
+        this.pag = pagamento; 
+    }
+
+    public Pagamento getPag() {
+        return pag;
+    }
+
+    public void setPag(Pagamento pag) {
+        this.pag = pag;
+    }
+
 }

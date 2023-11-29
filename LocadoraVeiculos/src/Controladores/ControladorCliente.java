@@ -37,7 +37,7 @@ public class ControladorCliente {
         return listaClientes;
     }
 
-    public Cliente buscaCliente(int cpf) {
+    public Cliente buscaCliente(long cpf) {
         for (Cliente cliente : listaClientes) {
             if (cliente.getCpf() == cpf) {
                 return cliente;
@@ -47,7 +47,7 @@ public class ControladorCliente {
     }
     
 
-    public boolean existeCliente(int cpf) {
+    public boolean existeCliente(long cpf) {
         return buscaCliente(cpf) != null;
     }
 }

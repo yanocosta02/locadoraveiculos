@@ -253,7 +253,7 @@
                     <Column editable="true" title="DataIni" type="java.lang.Object"/>
                     <Column editable="true" title="DataFim" type="java.lang.Object"/>
                     <Column editable="true" title="idVeiculo" type="java.lang.Object"/>
-                    <Column editable="true" title="idCliente" type="java.lang.Object"/>
+                    <Column editable="true" title="cpfCliente" type="java.lang.Object"/>
                     <Column editable="true" title="TipoSeguro" type="java.lang.Object"/>
                     <Column editable="true" title="StatusPag" type="java.lang.Object"/>
                   </Table>

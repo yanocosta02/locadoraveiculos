@@ -6,7 +6,6 @@ package Apresentacao;
 
 import Controladores.Locadora;
 import Modelo.Bicicleta;
-import Modelo.Cliente;
 import Modelo.Veiculo;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
